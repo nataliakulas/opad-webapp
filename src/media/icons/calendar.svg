@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>calendar</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="calendar" fill-rule="nonzero">
+            <circle id="Oval" fill="#4D4D4D" cx="256.001" cy="256" r="256"></circle>
+            <path d="M512.001,256 L368.46,115.421 L288.114,234.517 L169.466,115.576 L160.272,153.64 L264.458,256.738 L116.558,381.557 L246.821,511.82 C249.869,511.927 252.925,512.001 255.999,512.001 C397.385,512 512.001,397.384 512.001,256 Z" id="Shape" fill="#333333"></path>
+            <path d="M385.795,386.155 L126.206,386.155 C119.341,386.155 113.778,380.59 113.778,373.727 L113.778,182.734 L398.222,182.734 L398.222,373.727 C398.223,380.59 392.658,386.155 385.795,386.155 Z" id="Shape" fill="#F8F9F9"></path>
+            <path d="M255.427,182.734 L255.427,386.155 L385.796,386.155 C392.661,386.155 398.224,380.59 398.224,373.727 L398.224,182.734 L255.427,182.734 Z" id="Shape" fill="#DFE5E1"></path>
+            <g id="Group" transform="translate(142.000000, 199.000000)">
+                <rect id="Rectangle-path" fill="#4D4D4D" x="0.223" y="0.111" width="28.444" height="28.444"></rect>
+                <rect id="Rectangle-path" fill="#4D4D4D" x="49.992" y="0.111" width="28.444" height="28.444"></rect>
+                <rect id="Rectangle-path" x="113.432" y="0.111" width="14.796" height="28.444"></rect>
+            </g>
+            <g id="Group" transform="translate(291.000000, 199.000000)" fill="#333333">
+                <rect id="Rectangle-path" x="0.548" y="0.111" width="28.444" height="28.444"></rect>
+                <rect id="Rectangle-path" x="50.334" y="0.111" width="28.444" height="28.444"></rect>
+            </g>
+            <rect id="Rectangle-path" fill="#4D4D4D" x="142.223" y="242.64" width="28.444" height="28.444"></rect>
+            <rect id="Rectangle-path" fill="#DC755E" x="191.992" y="242.64" width="28.444" height="28.444"></rect>
+            <g id="Group" transform="translate(291.000000, 242.000000)" fill="#333333">
+                <rect id="Rectangle-path" x="0.548" y="0.64" width="28.444" height="28.444"></rect>
+                <rect id="Rectangle-path" x="50.334" y="0.64" width="28.444" height="28.444"></rect>
+            </g>
+            <g id="Group" transform="translate(142.000000, 286.000000)" fill="#4D4D4D">
+                <rect id="Rectangle-path" x="0.223" y="0.168" width="28.444" height="28.444"></rect>
+                <rect id="Rectangle-path" x="49.992" y="0.168" width="28.444" height="28.444"></rect>
+            </g>
+            <g id="Group" transform="translate(291.000000, 286.000000)" fill="#333333">
+                <rect id="Rectangle-path" x="0.548" y="0.168" width="28.444" height="28.444"></rect>
+                <rect id="Rectangle-path" x="50.334" y="0.168" width="28.444" height="28.444"></rect>
+            </g>
+            <g id="Group" transform="translate(142.000000, 329.000000)" fill="#4D4D4D">
+                <rect id="Rectangle-path" x="0.223" y="0.697" width="28.444" height="28.444"></rect>
+                <rect id="Rectangle-path" x="49.992" y="0.700195312" width="28.444" height="28.444"></rect>
+            </g>
+            <g id="Group" transform="translate(113.000000, 143.000000)">
+                <rect id="Rectangle-path" fill="#4D4D4D" x="128" y="186.700195" width="28.444" height="28.444"></rect>
+                <rect id="Rectangle-path" fill="#4D4D4D" x="128" y="56.111" width="28.444" height="28.444"></rect>
+                <rect id="Rectangle-path" fill="#333333" x="142" y="56.111" width="14.796" height="28.444"></rect>
+                <rect id="Rectangle-path" fill="#4D4D4D" x="128" y="99.64" width="28.444" height="28.444"></rect>
+                <rect id="Rectangle-path" fill="#333333" x="142.432" y="99.64" width="14.796" height="28.444"></rect>
+                <rect id="Rectangle-path" fill="#4D4D4D" x="128" y="143.168" width="28.444" height="28.444"></rect>
+                <rect id="Rectangle-path" fill="#333333" x="142.432" y="143.168" width="14.796" height="28.444"></rect>
+                <rect id="Rectangle-path" fill="#333333" x="142.432" y="186.697" width="14.796" height="28.444"></rect>
+                <rect id="Rectangle-path" fill="#333333" x="178.548" y="186.697" width="28.444" height="28.444"></rect>
+                <rect id="Rectangle-path" fill="#333333" x="228.334" y="186.697" width="28.444" height="28.444"></rect>
+                <path d="M272.078,0.946 L13.923,0.946 C6.664,0.946 0.778,6.831 0.778,14.091 L0.778,45.768 L285.222,45.768 L285.222,14.091 C285.223,6.832 279.338,0.946 272.078,0.946 Z" id="Shape" fill="#DFE5E1"></path>
+            </g>
+            <path d="M398.223,157.091 C398.223,149.832 392.338,143.946 385.078,143.946 L255.427,143.946 L255.427,188.768 L398.223,188.768 L398.223,157.091 Z" id="Shape" fill="#CBD1CD"></path>
+            <path d="M165.639,170.667 L147.252,170.667 C144.475,170.667 142.223,168.416 142.223,165.638 L142.223,118.806 C142.223,116.029 144.474,113.777 147.252,113.777 L165.639,113.777 C168.416,113.777 170.668,116.028 170.668,118.806 L170.668,165.638 C170.668,168.415 168.416,170.667 165.639,170.667 Z" id="Shape" fill="#DC755E"></path>
+            <path d="M364.75,173.667 L346.363,173.667 C343.586,173.667 341.334,171.416 341.334,168.638 L341.334,121.806 C341.334,119.029 343.585,116.777 346.363,116.777 L364.75,116.777 C367.527,116.777 369.779,119.028 369.779,121.806 L369.779,168.638 C369.779,171.415 367.527,173.667 364.75,173.667 Z" id="Shape" fill="#D5573B"></path>
+        </g>
+    </g>
+</svg>

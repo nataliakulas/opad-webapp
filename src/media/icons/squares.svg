@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>squares</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="squares" fill-rule="nonzero">
+            <circle id="Oval" fill="#4D4D4D" cx="256.001" cy="256" r="256"></circle>
+            <path d="M512.001,256 C512.001,245.77 511.382,235.687 510.215,225.77 L398.223,113.778 L330.782,204.361 L240.198,113.778 L113.779,240.197 L198.257,326.973 L113.779,398.222 L225.77,510.216 C235.686,511.383 245.771,512.002 256,512.002 C397.385,512 512.001,397.384 512.001,256 Z" id="Shape" fill="#333333"></path>
+            <rect id="Rectangle-path" fill="#F8F9F9" x="113.779" y="113.778" width="126.414" height="126.414"></rect>
+            <g id="Group" transform="translate(113.000000, 113.000000)" fill="#DFE5E1">
+                <rect id="Rectangle-path" x="158.809" y="0.778" width="126.414" height="126.414"></rect>
+                <rect id="Rectangle-path" x="0.779" y="158.808" width="126.414" height="126.414"></rect>
+            </g>
+            <rect id="Rectangle-path" fill="#F8F9F9" x="271.809" y="271.808" width="126.414" height="126.414"></rect>
+        </g>
+    </g>
+</svg>

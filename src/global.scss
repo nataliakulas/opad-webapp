@@ -1,0 +1,158 @@
+$black-light: #4D4D4D;
+$black-dark: #333333;
+$orange-light: #DC755E;
+$orange-dark: #D5573B;
+$white-light: #F8F9F9;
+$white-dark: #DFE5E1;
+$grey-light: #CBD1CD;
+$grey-dark: #B7BCB9;
+
+body {
+  font-family: 'Cabin', sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow-X: hidden;
+}
+
+.heading {
+  font-family: 'Droid Sans', sans-serif;
+}
+
+.background {
+  width: 100vw;;
+  height: 100vh;
+
+  background-image: url("./media/subtle_dots.png");
+}
+
+.navigation {
+  width: 90px;
+  height: 100vh;
+
+  position: absolute;
+  top: 0;
+
+  z-index: 1000;
+
+  list-style-type: none;
+
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+
+  &.left {
+    left: 0;
+    border-right: 1px solid $black-light;
+
+    li {
+      &:hover .nav-label {
+        right: -180px
+      }
+
+      .nav-label {
+        right: 0;
+      }
+    }
+  }
+
+  &.right {
+    right: 0;
+    border-left: 1px solid $black-light;
+
+    li {
+      &:hover .nav-label {
+        left: -180px
+      }
+
+      .nav-label {
+        left: 0;
+      }
+    }
+  }
+
+  li {
+    width: 50px;
+    height: 50px;
+
+    position: relative;
+
+    padding: 20px;
+
+    transition: background-color 0.3s ease-in;
+    cursor: pointer;
+
+    &.active {
+      background-color: $black-dark;
+      transition: background-color 0.3s ease-out;
+    }
+
+    &:hover {
+      .nav-label {
+        opacity: 1;
+        z-index: 0;
+      }
+    }
+
+    &:first-of-type {
+      margin-top: 90px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 90px;
+    }
+
+    .nav-label {
+      width: 180px;
+      height: 90px;
+
+      position: absolute;
+      top: 0;
+      opacity: 0;
+      z-index: -1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: $white-light;
+      text-transform: uppercase;
+      background: $black-light;
+    }
+  }
+}
+
+.ico {
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &.home {
+    background-image: url("./media/icons/home.svg");
+  }
+
+  &.camera {
+    background-image: url("./media/icons/camera.svg");
+  }
+
+  &.fav {
+    background-image: url("./media/icons/fav.svg");
+  }
+
+  &.menu {
+    background-image: url("./media/icons/menu.svg");
+  }
+
+  &.power {
+    background-image: url("./media/icons/power-button.svg");
+  }
+
+  &.search {
+    background-image: url("./media/icons/search.svg");
+  }
+
+  &.user {
+    background-image: url("./media/icons/user.svg");
+  }
+}

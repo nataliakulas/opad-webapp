@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>photo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="photo" fill-rule="nonzero">
+            <circle id="Oval" fill="#4D4D4D" cx="256" cy="256" r="256"></circle>
+            <path d="M512,256 L398.222,142.222 L298.235,287.318 L113.777,341.333 C113.777,341.333 183.849,445.19 246.568,511.808 C249.7,511.922 252.841,511.999 255.999,511.999 C397.384,512 512,397.384 512,256 Z" id="Shape" fill="#333333"></path>
+            <rect id="Rectangle-path" fill="#DC755E" x="113.778" y="142.222" width="284.444" height="199.111"></rect>
+            <rect id="Rectangle-path" fill="#D5573B" x="256.293" y="142.222" width="141.929" height="199.111"></rect>
+            <rect id="Rectangle-path" fill="#F8F9F9" x="144.998" y="167.202" width="222.005" height="149.152"></rect>
+            <g id="Group" transform="translate(144.000000, 167.000000)" fill="#DFE5E1">
+                <rect id="Rectangle-path" x="112.293" y="0.202" width="110.709" height="149.152"></rect>
+                <rect id="Rectangle-path" x="0.998" y="117.444" width="222.005" height="31.913"></rect>
+            </g>
+            <rect id="Rectangle-path" fill="#B7BCB9" x="256.293" y="284.444" width="110.709" height="31.913"></rect>
+            <polygon id="Shape" fill="#4D4D4D" points="168.176 284.444 225.064 227.556 253.509 256 310.398 199.111 364.511 284.444"></polygon>
+            <polygon id="Shape" fill="#333333" points="310.398 199.111 256.288 253.221 256.288 284.444 364.511 284.444"></polygon>
+            <circle id="Oval" fill="#B7BCB9" cx="192.215" cy="211.178" r="20.687"></circle>
+        </g>
+    </g>
+</svg>

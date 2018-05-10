@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>message-read</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="message-read" fill-rule="nonzero">
+            <circle id="Oval" fill="#4D4D4D" cx="256" cy="256" r="256"></circle>
+            <path d="M506.782,307.671 L398.222,199.111 L359.601,278.754 L113.777,369.778 L256,512 C379.683,512 482.882,424.286 506.782,307.671 Z" id="Shape" fill="#333333"></path>
+            <polygon id="Shape" fill="#CBD1CD" points="398.222 199.111 256 113.778 113.778 199.111 113.778 199.111 113.778 369.778 398.222 369.778"></polygon>
+            <polygon id="Shape" fill="#B7BCB9" points="398.222 199.111 256 113.778 255.426 114.123 255.426 369.778 398.222 369.778"></polygon>
+            <polygon id="Shape" fill="#DFE5E1" points="398.222 199.111 256 284.444 113.778 199.111"></polygon>
+            <polygon id="Shape" fill="#CBD1CD" points="398.222 199.111 255.426 199.111 255.426 284.1 256 284.444"></polygon>
+            <polygon id="Shape" fill="#F8F9F9" points="113.778 199.111 256 113.778 398.222 199.111"></polygon>
+            <polygon id="Shape" fill="#DFE5E1" points="256 113.778 255.426 114.123 255.426 199.111 398.222 199.111"></polygon>
+        </g>
+    </g>
+</svg>

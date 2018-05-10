@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>attachment</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="attachment" fill-rule="nonzero">
+            <circle id="Oval" fill="#4D4D4D" cx="256" cy="256" r="256"></circle>
+            <path d="M283.026,510.581 C395.687,498.758 486.573,413.868 507.458,304.157 L389.603,186.302 L361.9,212.918 L311.4,161.885 L274.681,156.87 L256,175.55 L256,222.307 L266.343,259.602 L277.621,285.088 L113.778,341.332 L283.026,510.581 Z" id="Shape" fill="#333333"></path>
+            <rect id="Rectangle-path" fill="#F8F9F9" x="113.778" y="186.302" width="275.825" height="155.031"></rect>
+            <g id="Group" transform="translate(113.000000, 186.000000)" fill="#DFE5E1">
+                <rect id="Rectangle-path" x="142.431" y="0.302" width="134.172" height="155.031"></rect>
+                <polygon id="Shape" points="0.778 0.302 143 98.444 276.603 0.302"></polygon>
+            </g>
+            <polygon id="Shape" fill="#CBD1CD" points="389.603 186.302 255.426 186.302 255.426 284.048 256 284.444"></polygon>
+            <rect id="Rectangle-path" fill="#DC755E" transform="translate(278.461202, 259.604403) rotate(-174.231823) translate(-278.461202, -259.604403) " x="207.73481" y="188.878011" width="141.452784" height="141.452784"></rect>
+            <polygon id="Shape" fill="#D5573B" points="355.938 196.339 286.861 189.362 270.093 329.85 341.721 337.086"></polygon>
+            <path d="M271.856,281.884 C261.016,281.884 252.195,273.063 252.195,262.223 L252.195,186.781 C252.195,167.622 267.784,152.032 286.944,152.032 C306.104,152.032 321.693,167.14 321.693,186.3 L312.548,186.3 C312.548,172.181 301.063,161.178 286.945,161.178 C272.826,161.178 261.342,172.663 261.342,186.781 L261.342,262.223 C261.342,268.022 266.059,272.739 271.858,272.739 C277.657,272.739 282.374,268.022 282.374,262.223 L282.374,186.781 L291.519,186.781 L291.519,262.223 C291.518,273.065 282.696,281.884 271.856,281.884 Z" id="Shape" fill="#F8F9F9"></path>
+            <path d="M286.944,152.033 C286.877,152.033 286.811,152.043 286.742,152.043 L286.742,161.188 C286.809,161.188 286.875,161.178 286.944,161.178 C301.063,161.178 312.547,172.182 312.547,186.3 L321.692,186.3 C321.695,167.141 306.105,152.033 286.944,152.033 Z" id="Shape" fill="#DFE5E1"></path>
+        </g>
+    </g>
+</svg>
