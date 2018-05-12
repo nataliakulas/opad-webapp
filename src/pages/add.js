@@ -3,7 +3,7 @@ import {Container, Row, Col} from 'react-grid-system';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-import {storage} from '../firebase/config';
+import {auth, storage} from '../firebase/config';
 
 class AddPage extends React.Component {
   constructor(props) {
@@ -26,12 +26,13 @@ class AddPage extends React.Component {
   };
 
   onSubmit = (e) => {
+    const userId = auth.currentUser.uid;
     const name = moment(this.state.date).format('YYYY-MM-D');
     const picture = this.state.picture;
 
     this.setState({loading: true});
 
-    storage.child(name)
+    storage.child(userId + '/' + name)
       .put(picture)
       .then(() => this.setState({loading: false}))
       .catch(error => this.setState({error: error.message}));
@@ -40,9 +41,6 @@ class AddPage extends React.Component {
   };
 
   render() {
-
-    console.log(moment(this.state.date).format('YYYY-MM-D'));
-
     return (
       <Container>
         <Row>

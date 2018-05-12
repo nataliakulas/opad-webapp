@@ -5,15 +5,14 @@ import {compose} from 'recompose';
 
 import * as routes from '../shared/routes';
 
-import {registerUser} from '../firebase/auth';
-import {createUser} from '../firebase/db';
+import {logIn} from '../firebase/auth';
 import {propByKey} from '../shared/helpers';
 
 const mapStateToProps = (state) => ({
   authUser: state.sessionState.authUser
 });
 
-class RegisterPage extends React.Component {
+class LogInPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -23,21 +22,11 @@ class RegisterPage extends React.Component {
     }
   }
 
-
   onSubmit = (e) => {
-    registerUser(this.state.email, this.state.password)
-      .then((authUser) => {
-        createUser(authUser.user.uid, this.state.email, [])
-          .then(() => {
-            this.setState(() => ({email: '', password: ''}));
-            this.props.history.push(routes.DASHBOARD);
-          })
-          .catch(error => {
-            this.setState(propByKey('error', error));
-          });
-      })
-      .catch(error => {
-        this.setState(propByKey('error', error));
+    logIn(this.state.email, this.state.password)
+      .then(() => {
+        this.setState(() => ({email: '', password: ''}))
+        this.props.history.push(routes.DASHBOARD);
       });
 
     e.preventDefault();
@@ -59,7 +48,7 @@ class RegisterPage extends React.Component {
                        onChange={(e) => this.setState(propByKey('password', e.target.value))}
                        type="password"
                        placeholder="password"/>
-                <button type="submit">Register</button>
+                <button type="submit">Login</button>
               </form>
             }
           </Col>
@@ -71,4 +60,4 @@ class RegisterPage extends React.Component {
 
 export default compose(
   connect(mapStateToProps),
-)(RegisterPage)
+)(LogInPage)
