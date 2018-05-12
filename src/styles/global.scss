@@ -24,7 +24,7 @@ body {
   width: 100vw;;
   height: 100vh;
 
-  background-image: url("./media/subtle_dots.png");
+  background-image: url("../media/subtle_dots.png");
 }
 
 .navigation {
@@ -129,30 +129,30 @@ body {
   background-position: center;
 
   &.home {
-    background-image: url("./media/icons/home.svg");
+    background-image: url("../media/icons/home.svg");
   }
 
   &.camera {
-    background-image: url("./media/icons/camera.svg");
+    background-image: url("../media/icons/camera.svg");
   }
 
   &.fav {
-    background-image: url("./media/icons/fav.svg");
+    background-image: url("../media/icons/fav.svg");
   }
 
   &.menu {
-    background-image: url("./media/icons/menu.svg");
+    background-image: url("../media/icons/menu.svg");
   }
 
   &.power {
-    background-image: url("./media/icons/power-button.svg");
+    background-image: url("../media/icons/power-button.svg");
   }
 
   &.search {
-    background-image: url("./media/icons/search.svg");
+    background-image: url("../media/icons/search.svg");
   }
 
   &.user {
-    background-image: url("./media/icons/user.svg");
+    background-image: url("../media/icons/user.svg");
   }
 }

@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
-import './global.css';
+import './styles/global.css';
 
 import App from './components/App';
-import store from './store';
+import store from './duck/store';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(

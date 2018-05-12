@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 
-import * as routes from '../routes';
+import * as routes from '../shared/routes';
 
 import {NavigationLeft, NavigationRight} from '../components/Navigation';
 import DashboardPage from '../pages/dashboard';

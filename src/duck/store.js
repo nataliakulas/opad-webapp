@@ -1,7 +1,7 @@
 import {createStore} from 'redux';
 import {combineReducers} from 'redux';
 
-import {sessionReducer, userReducer} from './reducers.js'
+import {sessionReducer} from './reducers.js'
 
 
 const rootReducer = combineReducers({

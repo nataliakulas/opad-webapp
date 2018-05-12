@@ -1,11 +1,9 @@
 import React from 'react';
 import {Container, Row, Col} from 'react-grid-system';
 
-import {createUser} from '../firebase/auth'
+import {createUser} from '../firebase/auth';
+import {propByKey} from '../shared/helpers';
 
-const propByKey = (propertyName, value) => () => ({
-  [propertyName]: value,
-});
 
 class RegisterPage extends React.Component {
   constructor(props) {
