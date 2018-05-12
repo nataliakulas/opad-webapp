@@ -3,6 +3,9 @@ import {Container, Row, Col} from 'react-grid-system';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
+import 'react-datepicker/dist/react-datepicker.css';
+import '../styles/datepicker.css'
+
 import {auth, storage} from '../firebase/config';
 
 class AddPage extends React.Component {
@@ -23,9 +26,8 @@ class AddPage extends React.Component {
   };
 
   setPicture = (e) => {
-    let reader = new FileReader();
     let picture = e.target.files[0];
-
+    let reader = new FileReader();
 
     reader.onloadend = () => {
       this.setState({picture: picture, pictureUrl: reader.result})
@@ -54,14 +56,20 @@ class AddPage extends React.Component {
       <Container>
         <Row>
           <Col>
-            <form onSubmit={this.onSubmit}>
-              <DatePicker selected={this.state.date} onChange={this.setDate}/>
-              <input type="file" onChange={this.setPicture}/>
-              <button type="submit">Add photo</button>
+            <form className="wrapper" onSubmit={this.onSubmit}>
+              <DatePicker className="picker"
+                          dateFormat="YYYY-MM-DD"
+                          selected={this.state.date}
+                          onChange={this.setDate}/>
+              <div className="holder">
+                <input type="file" id="picture" onChange={this.setPicture}/>
+                <label className="uploader" htmlFor="picture">Add picture</label>
+                {this.state.pictureUrl ?
+                  <img className="viewer" src={this.state.pictureUrl} alt=""/>
+                  : null}
+              </div>
+              <button className="button" type="submit">Add</button>
             </form>
-            {this.state.pictureUrl ?
-              <img src={this.state.pictureUrl} alt=""/>
-              : null}
           </Col>
         </Row>
       </Container>

@@ -1,0 +1,29 @@
+$black-light: #4D4D4D;
+$black-dark: #333333;
+$orange-light: #DC755E;
+$orange-dark: #D5573B;
+$white-light: #F8F9F9;
+$white-dark: #DFE5E1;
+$grey-light: #CBD1CD;
+$grey-dark: #B7BCB9;
+
+.picker {
+  width: 200px;
+  box-sizing: border-box;
+
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 14px;
+
+  background-color: $white-light;
+  background-image: url("../media/icons/calendar.svg");
+  background-position: calc(100% - 10px) center;
+  background-size: 35px;
+  background-repeat: no-repeat;
+  border: 1px dotted $black-light;
+
+  padding: 20px;
+
+  &:focus {
+    border: 1px solid $black-dark;
+  }
+}

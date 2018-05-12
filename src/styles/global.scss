@@ -10,7 +10,6 @@ $grey-dark: #B7BCB9;
 body {
   font-family: 'Cabin', sans-serif;
   font-size: 14px;
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
   overflow-X: hidden;
@@ -18,6 +17,16 @@ body {
 
 .heading {
   font-family: 'Droid Sans', sans-serif;
+}
+
+:focus {
+  outline-color: $black-light;
+  outline-offset: 1px;
+}
+
+::selection {
+  color: $white-light;
+  background-color: $black-dark;
 }
 
 .background {
@@ -154,5 +163,85 @@ body {
 
   &.user {
     background-image: url("../media/icons/user.svg");
+  }
+}
+
+.wrapper {
+  height: 50vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 25vh auto;
+}
+
+.holder {
+  width: 200px;
+  height: 200px;
+
+  position: relative;
+
+  input[type='file'] {
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+    opacity: 0;
+
+    &:focus + .uploader,
+    & + .uploader:hover {
+      border: 1px solid $black-light;
+    }
+  }
+
+  .uploader {
+    width: 200px;
+    height: 200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    text-transform: uppercase;
+
+    border: 1px dotted $black-light;
+
+    cursor: pointer;
+  }
+
+  .viewer {
+    width: 200px;
+    height: 200px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    border: 1px solid transparent;
+  }
+}
+
+.button {
+  width: 100%;
+  max-width: 200px;
+
+  font: 400 14px 'Droid Sans', sans-serif;
+  color: $white-light;
+  text-transform: uppercase;
+
+  background-color: $black-light;
+  border: 1px solid $black-light;
+
+  padding: 15px;
+
+  &:hover {
+    background-color: $black-dark;
   }
 }
