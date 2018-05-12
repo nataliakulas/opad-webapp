@@ -12,6 +12,7 @@ class AddPage extends React.Component {
     this.state = {
       loading: false,
       picture: '',
+      pictureUrl: '',
       date: moment(),
       error: ''
     }
@@ -22,7 +23,15 @@ class AddPage extends React.Component {
   };
 
   setPicture = (e) => {
-    this.setState({picture: e.target.files[0]})
+    let reader = new FileReader();
+    let picture = e.target.files[0];
+
+
+    reader.onloadend = () => {
+      this.setState({picture: picture, pictureUrl: reader.result})
+    };
+
+    reader.readAsDataURL(picture)
   };
 
   onSubmit = (e) => {
@@ -50,6 +59,9 @@ class AddPage extends React.Component {
               <input type="file" onChange={this.setPicture}/>
               <button type="submit">Add photo</button>
             </form>
+            {this.state.pictureUrl ?
+              <img src={this.state.pictureUrl} alt=""/>
+              : null}
           </Col>
         </Row>
       </Container>
