@@ -15,7 +15,7 @@ const App = () => {
     <Router>
       <div className="background" style={{position: 'relative'}}>
         <NavigationLeft/>
-        <Route exact path={routes.LANDING} component={DashboardPage}/>
+        <Route exact path={routes.DASHBOARD} component={DashboardPage}/>
         <Route exact path={routes.REGISTER} component={RegisterPage}/>
         <Route exact path={routes.LOG_IN} component={LogInPage}/>
         <Route exact path={routes.ADD} component={AddPage}/>

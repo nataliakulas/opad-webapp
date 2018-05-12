@@ -228,6 +228,16 @@ body {
   }
 }
 
+.pictures {
+  margin: 100px 0;
+
+  .picture {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+  }
+}
+
 .button {
   width: 100%;
   max-width: 200px;

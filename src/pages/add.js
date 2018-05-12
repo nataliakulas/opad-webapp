@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/datepicker.css'
 
 import {auth, storage} from '../firebase/config';
+import {createRef} from '../firebase/db';
 
 class AddPage extends React.Component {
   constructor(props) {
@@ -43,10 +44,15 @@ class AddPage extends React.Component {
 
     this.setState({loading: true});
 
-    storage.child(userId + '/' + name)
+    storage.ref().child(userId + '/' + name)
       .put(picture)
-      .then(() => this.setState({loading: false}))
+      .then((snap) => {
+        this.setState({loading: false});
+        console.log(snap.metadata.fullPath)
+        createRef(snap.metadata.fullPath, userId)
+        })
       .catch(error => this.setState({error: error.message}));
+
 
     e.preventDefault();
   };
