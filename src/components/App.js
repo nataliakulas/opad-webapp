@@ -4,7 +4,8 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import * as routes from '../shared/routes';
 import authentication from '../shared/authentication';
 
-import {NavigationLeft, NavigationRight} from '../components/Navigation';
+import NavigationLeft from './NavigationLeft';
+import NavigationRight from './NavigationRight';
 import LandingPage from '../pages/landing';
 import DashboardPage from '../pages/dashboard';
 import RegisterPage from '../pages/register';
@@ -13,7 +14,7 @@ import AddPage from '../pages/add';
 
 const App = () => {
   return (
-    <Router>
+    <Router history={null}>
       <div className="background" style={{position: 'relative'}}>
         <NavigationLeft/>
         <Route exact path={routes.LANDING} component={LandingPage}/>
