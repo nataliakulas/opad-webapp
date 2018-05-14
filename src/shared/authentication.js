@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {AUTH_USER} from '../duck/reducers';
+import {AUTH_USER} from '../duck/actions';
 
 import {auth} from '../firebase/config';
 

@@ -7,7 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/datepicker.css'
 
 import {auth, storage} from '../firebase/config';
-import {createRef} from '../firebase/db';
+import {createDbRef} from '../firebase/db';
 
 class AddPage extends React.Component {
   constructor(props) {
@@ -15,8 +15,8 @@ class AddPage extends React.Component {
 
     this.state = {
       loading: false,
-      picture: '',
-      pictureUrl: '',
+      item: '',
+      itemUrl: '',
       date: moment(),
       error: ''
     }
@@ -27,32 +27,29 @@ class AddPage extends React.Component {
   };
 
   setPicture = (e) => {
-    let picture = e.target.files[0];
+    let item = e.target.files[0];
     let reader = new FileReader();
 
     reader.onloadend = () => {
-      this.setState({picture: picture, pictureUrl: reader.result})
+      this.setState({item: item, itemUrl: reader.result})
     };
 
-    reader.readAsDataURL(picture)
+    reader.readAsDataURL(item)
   };
 
   onSubmit = (e) => {
     const userId = auth.currentUser.uid;
     const name = moment(this.state.date).format('YYYY-MM-D');
-    const picture = this.state.picture;
+    const item = this.state.item;
 
     this.setState({loading: true});
-
     storage.ref().child(userId + '/' + name)
-      .put(picture)
+      .put(item)
       .then((snap) => {
         this.setState({loading: false});
-        console.log(snap.metadata.fullPath)
-        createRef(snap.metadata.fullPath, userId)
-        })
+        createDbRef(snap.metadata.fullPath, name, userId)
+      })
       .catch(error => this.setState({error: error.message}));
-
 
     e.preventDefault();
   };
@@ -62,16 +59,17 @@ class AddPage extends React.Component {
       <Container>
         <Row>
           <Col>
-            <form className="wrapper" onSubmit={this.onSubmit}>
+            <form className="wrapper" style={{height: '50vh'}} onSubmit={this.onSubmit}>
               <DatePicker className="picker"
                           dateFormat="YYYY-MM-DD"
                           selected={this.state.date}
+                          maxDate={moment()}
                           onChange={this.setDate}/>
               <div className="holder">
                 <input type="file" id="picture" onChange={this.setPicture}/>
                 <label className="uploader" htmlFor="picture">Add picture</label>
-                {this.state.pictureUrl ?
-                  <img className="viewer" src={this.state.pictureUrl} alt=""/>
+                {this.state.itemUrl ?
+                  <img className="viewer" src={this.state.itemUrl} alt=""/>
                   : null}
               </div>
               <button className="button" type="submit">Add</button>

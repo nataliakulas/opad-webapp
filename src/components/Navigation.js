@@ -7,7 +7,7 @@ export class NavigationLeft extends React.Component {
       <ul className="navigation left">
         <li className="ico home active"><span className="nav-label">Dashboard</span></li>
         <li className="ico camera"><span className="nav-label">Add</span></li>
-        <li className="ico search"><span className="nav-label">Search</span></li>
+        <li className="ico search disabled"><span className="nav-label">Search</span></li>
       </ul>
     )
   }

@@ -1,21 +1,23 @@
-import {db} from './config';
+import {db, storage} from './config';
 
 // User API
-export const createUser = (id, email, pictures) =>
+export const createUser = (id, email, items) =>
   db.ref(`${id}`).set({
     email,
-    pictures
+    items: items
   });
 
-export const createRef = (url, uid) => {
-  const id = db.ref().child(`${uid}/pictures`).push().key;
-
-  if (id) {
-    db.ref(`${uid}/pictures/${id}`).set({
-      url
+export const createDbRef = (itemUrl, name, uid) => {
+  storage.ref(itemUrl)
+    .getDownloadURL()
+    .then(url => {
+      if (name) {
+        db.ref(`${uid}/items/${name}`).set({
+          url
+        })
+      }
     })
-  }
 };
 
-export const getRefs =(uid)=>
-  db.ref(`${uid}/pictures`).once('value');
+export const getDbRefs = (uid) =>
+  db.ref(`${uid}/items`).once('value');

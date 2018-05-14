@@ -1,15 +1,17 @@
-import {createStore} from 'redux';
-import {combineReducers} from 'redux';
-
-import {sessionReducer} from './reducers.js'
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import thunkMiddleware from 'redux-thunk'
+import {sessionReducer, itemsReducer} from './reducers.js'
 
 
 const rootReducer = combineReducers({
   sessionState: sessionReducer,
+  itemsState: itemsReducer
 });
 
-const store = createStore(rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(thunkMiddleware)
 );
 
 export default store;

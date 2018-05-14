@@ -2,51 +2,50 @@ import React from 'react';
 import {Container, Row, Col} from 'react-grid-system';
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
+import moment from 'moment';
 
 import {authCondition} from '../shared/helpers';
 import authorization from '../shared/authorization';
-import {auth, storage} from '../firebase/config';
-import {getRefs} from '../firebase/db';
+import {storage} from '../firebase/config';
+
+import {getItems} from '../duck/actions';
+
+import Box from '../components/Box';
 
 const mapStateToProps = (state) => ({
-  authUser: state.sessionState.authUser
+  authUser: state.sessionState.authUser,
+  items: state.itemsState.items
+});
+
+const mapDispatchToProps = dispatch => ({
+  getItems: () => dispatch(getItems())
 });
 
 class DashboardPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      pictures: []
-    }
-  }
 
   componentDidMount() {
-    const userId = auth.currentUser.uid;
-    const pictures = [];
-
-    getRefs(userId)
-      .then(snap => {
-        snap.forEach(item => {
-          let url = item.val()['url'];
-
-          storage.ref(`${url}`).getDownloadURL()
-            .then(url => pictures.push(url))
-            .then(() => this.setState({pictures: pictures}))
-        })
-      })
+    this.props.getItems();
   }
 
   render() {
+    let items = [];
+    if (this.props.items.length > 0) {
+      items = this.props.items;
+
+      items.sort((prev, next) => {
+        return moment(next.name) - moment(prev.name)
+      });
+    }
+
     return (
       <Container>
         <Row>
           <Col xs={10} offset={{xs: 1}}>
-            <div className="pictures">
-              {this.state.pictures.map((picture, i) => {
+            <div className="box-grid">
+              {items.map((item, i) => {
                 i++;
                 return (
-                  <img key={i} className="picture" src={picture} alt=""/>
+                  <Box key={i} src={item.url} name={item.name}/>
                 )
               })}
             </div>
@@ -60,4 +59,5 @@ class DashboardPage extends React.Component {
 export default compose(
   authorization(authCondition),
   connect(mapStateToProps),
+  connect(null, mapDispatchToProps)
 )(DashboardPage)

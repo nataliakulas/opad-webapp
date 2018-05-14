@@ -39,7 +39,7 @@ class LogInPage extends React.Component {
           <Col>
             {this.props && this.props.authUser ?
               <p>already logged in</p> :
-              <form onSubmit={this.onSubmit}>
+              <form className="wrapper" style={{height: '25vh'}} onSubmit={this.onSubmit}>
                 <input value={this.state.email}
                        onChange={(e) => this.setState(propByKey('email', e.target.value))}
                        type="text"
@@ -48,7 +48,7 @@ class LogInPage extends React.Component {
                        onChange={(e) => this.setState(propByKey('password', e.target.value))}
                        type="password"
                        placeholder="password"/>
-                <button type="submit">Login</button>
+                <button className="button" type="submit">Login</button>
               </form>
             }
           </Col>
