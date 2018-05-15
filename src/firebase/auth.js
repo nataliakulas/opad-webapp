@@ -9,9 +9,9 @@ export const logIn = (email, password) =>
   auth.signInWithEmailAndPassword(email, password);
 
 // Password Reset
-export const passwordReset = (email) =>
+export const resetPassword = (email) =>
   auth.sendPasswordResetEmail(email);
 
 // Password Change
-export const passwordUpdate = (password) =>
+export const updatePassword = (password) =>
   auth.currentUser.updatePassword(password);

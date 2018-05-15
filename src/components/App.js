@@ -9,6 +9,7 @@ import NavigationRight from './NavigationRight';
 import LandingPage from '../pages/landing';
 import DashboardPage from '../pages/dashboard';
 import RegisterPage from '../pages/register';
+import ResetPage from '../pages/reset';
 import AddPage from '../pages/add';
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <NavigationLeft/>
         <Route exact path={routes.LANDING} component={LandingPage}/>
         <Route exact path={routes.REGISTER} component={RegisterPage}/>
+        <Route exact path={routes.PASSWORD_RESET} component={ResetPage}/>
         <Route exact path={routes.DASHBOARD} component={DashboardPage}/>
         <Route exact path={routes.ADD} component={AddPage}/>
         <NavigationRight/>

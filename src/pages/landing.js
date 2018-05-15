@@ -41,7 +41,7 @@ class LandingPage extends React.Component {
                 <div className="front" onClick={this.flip}>
                   <p>No sharing, it's all private,<br/> just take, <br/> One Picture a Day.</p>
                 </div>
-                <div className="back">
+                <div className="back column-center">
                   <Login history={this.props.history}/>
                   <ul>
                     <li><Link to={routes.PASSWORD_RESET}>Forgot password?</Link></li>

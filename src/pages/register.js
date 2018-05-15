@@ -50,33 +50,35 @@ class RegisterPage extends React.Component {
   };
 
   render() {
-    return (
-      <Container>
-        <Row>
-          <Col>
-            <form className="column-center" style={{height: '50vh', marginTop: '25vh'}} onSubmit={this.onSubmit}>
-              <input value={this.state.name}
-                     onChange={(e) => this.setState(propByKey('name', e.target.value))}
-                     type="text"
-                     placeholder="name"/>
-              <input value={this.state.email}
-                     onChange={(e) => this.setState(propByKey('email', e.target.value))}
-                     type="email"
-                     placeholder="e-mail"/>
-              <input value={this.state.password}
-                     onChange={(e) => this.setState(propByKey('password', e.target.value))}
-                     type="password"
-                     placeholder="password"/>
-              <input value={this.state.password_repeat}
-                     onChange={(e) => this.setState(propByKey('password_repeat', e.target.value))}
-                     type="password"
-                     placeholder="repeat password"/>
-              <button className="button" type="submit">Register</button>
-            </form>
-          </Col>
-        </Row>
-      </Container>
-    )
+    return <Container>
+      <Row>
+        <Col>
+          <form className="column-center" style={{height: '50vh', marginTop: '25vh'}} onSubmit={this.onSubmit}>
+            <input value={this.state.name}
+                   onChange={(e) => this.setState(propByKey('name', e.target.value))}
+                   type="text"
+                   name="name"
+                   placeholder="name"/>
+            <input value={this.state.email}
+                   onChange={(e) => this.setState(propByKey('email', e.target.value))}
+                   type="email"
+                   name="email"
+                   placeholder="e-mail"/>
+            <input value={this.state.password}
+                   onChange={(e) => this.setState(propByKey('password', e.target.value))}
+                   type="password"
+                   name="password"
+                   placeholder="password"/>
+            <input value={this.state.password_repeat}
+                   onChange={(e) => this.setState(propByKey('password_repeat', e.target.value))}
+                   type="password"
+                   name="password_repeat"
+                   placeholder="repeat password"/>
+            <button className="button" type="submit">Register</button>
+          </form>
+        </Col>
+      </Row>
+    </Container>
   }
 }
 

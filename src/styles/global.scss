@@ -218,8 +218,8 @@ body {
   }
 
   .auth, .non-auth, .front, .back {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
 
     display: flex;
     flex-direction: column;
@@ -263,10 +263,6 @@ body {
     }
 
     .back {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       transform: rotateX(180deg);
 
       form {
@@ -362,6 +358,10 @@ input[type=email] {
 
 input[type=password] {
   background-image: url("../media/icons/private.svg");
+}
+
+input[name=password_repeat] {
+  background-image: url("../media/icons/check.svg");
 }
 
 .holder {
