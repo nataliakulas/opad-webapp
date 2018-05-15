@@ -306,6 +306,7 @@ body {
 
     li {
       color: $black-light;
+      line-height: 20px;
       text-align: center;
       margin-bottom: 10px;
       cursor: pointer;
@@ -317,6 +318,7 @@ body {
       a {
         color: $black-light;
         text-decoration: none;
+        padding: 0 10px;
       }
     }
   }
