@@ -6,7 +6,6 @@ import moment from 'moment';
 
 import {authCondition} from '../shared/helpers';
 import authorization from '../shared/authorization';
-import {storage} from '../firebase/config';
 
 import {getItems} from '../duck/actions';
 
@@ -22,7 +21,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class DashboardPage extends React.Component {
-
   componentDidMount() {
     this.props.getItems();
   }

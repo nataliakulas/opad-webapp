@@ -2,6 +2,7 @@ import React from 'react';
 import {Container, Row, Col} from 'react-grid-system';
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
+import {withRouter} from 'react-router-dom';
 
 import * as routes from '../shared/routes';
 
@@ -18,18 +19,23 @@ class RegisterPage extends React.Component {
     super(props);
 
     this.state = {
+      name: '',
       email: '',
-      password: ''
+      password: '',
+      password_repeat: ''
     }
   }
 
+  componentWillReceiveProps(props) {
+    props.authUser ? this.props.history.push(routes.DASHBOARD) : null
+  }
 
   onSubmit = (e) => {
     registerUser(this.state.email, this.state.password)
       .then((authUser) => {
-        createUser(authUser.user.uid, this.state.email, [])
+        createUser(authUser.user.uid, this.state.name, this.state.email, [])
           .then(() => {
-            this.setState(() => ({email: '', password: ''}));
+            this.setState(() => ({name: '', email: '', password: ''}));
             this.props.history.push(routes.DASHBOARD);
           })
           .catch(error => {
@@ -48,20 +54,25 @@ class RegisterPage extends React.Component {
       <Container>
         <Row>
           <Col>
-            {this.props && this.props.authUser ?
-              <p>already logged in</p> :
-              <form className="wrapper" style={{height:'25vh'}} onSubmit={this.onSubmit}>
-                <input value={this.state.email}
-                       onChange={(e) => this.setState(propByKey('email', e.target.value))}
-                       type="text"
-                       placeholder="e-mail"/>
-                <input value={this.state.password}
-                       onChange={(e) => this.setState(propByKey('password', e.target.value))}
-                       type="password"
-                       placeholder="password"/>
-                <button className="button" type="submit">Register</button>
-              </form>
-            }
+            <form className="column-center" style={{height: '50vh', marginTop: '25vh'}} onSubmit={this.onSubmit}>
+              <input value={this.state.name}
+                     onChange={(e) => this.setState(propByKey('name', e.target.value))}
+                     type="text"
+                     placeholder="name"/>
+              <input value={this.state.email}
+                     onChange={(e) => this.setState(propByKey('email', e.target.value))}
+                     type="email"
+                     placeholder="e-mail"/>
+              <input value={this.state.password}
+                     onChange={(e) => this.setState(propByKey('password', e.target.value))}
+                     type="password"
+                     placeholder="password"/>
+              <input value={this.state.password_repeat}
+                     onChange={(e) => this.setState(propByKey('password_repeat', e.target.value))}
+                     type="password"
+                     placeholder="repeat password"/>
+              <button className="button" type="submit">Register</button>
+            </form>
           </Col>
         </Row>
       </Container>
@@ -71,4 +82,5 @@ class RegisterPage extends React.Component {
 
 export default compose(
   connect(mapStateToProps),
+  withRouter
 )(RegisterPage)

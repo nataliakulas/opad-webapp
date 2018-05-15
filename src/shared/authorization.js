@@ -16,7 +16,7 @@ const authorization = (authCondition) => (Component) => {
     componentDidMount() {
       auth.onAuthStateChanged(authUser => {
         if (!authCondition(authUser)) {
-          this.props.history.push(routes.LOG_IN)
+          this.props.history.push(routes.LANDING)
         }
       })
     }

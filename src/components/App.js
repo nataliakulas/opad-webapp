@@ -9,7 +9,6 @@ import NavigationRight from './NavigationRight';
 import LandingPage from '../pages/landing';
 import DashboardPage from '../pages/dashboard';
 import RegisterPage from '../pages/register';
-import LogInPage from '../pages/login';
 import AddPage from '../pages/add';
 
 const App = () => {
@@ -18,9 +17,8 @@ const App = () => {
       <div className="background" style={{position: 'relative'}}>
         <NavigationLeft/>
         <Route exact path={routes.LANDING} component={LandingPage}/>
-        <Route exact path={routes.DASHBOARD} component={DashboardPage}/>
         <Route exact path={routes.REGISTER} component={RegisterPage}/>
-        <Route exact path={routes.LOG_IN} component={LogInPage}/>
+        <Route exact path={routes.DASHBOARD} component={DashboardPage}/>
         <Route exact path={routes.ADD} component={AddPage}/>
         <NavigationRight/>
       </div>

@@ -1,14 +1,15 @@
 import {db, storage} from './config';
 
 // User API
-export const createUser = (id, email, items) =>
+export const createUser = (id, name, email, items) =>
   db.ref(`${id}`).set({
+    name,
     email,
     items: items
   });
 
-export const createDbRef = (itemUrl, name, uid) => {
-  storage.ref(itemUrl)
+export const createDbRef = (item_url, name, uid) => {
+  storage.ref(item_url)
     .getDownloadURL()
     .then(url => {
       if (name) {

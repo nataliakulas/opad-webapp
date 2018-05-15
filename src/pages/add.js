@@ -16,7 +16,7 @@ class AddPage extends React.Component {
     this.state = {
       loading: false,
       item: '',
-      itemUrl: '',
+      item_url: '',
       date: moment(),
       error: ''
     }
@@ -31,7 +31,7 @@ class AddPage extends React.Component {
     let reader = new FileReader();
 
     reader.onloadend = () => {
-      this.setState({item: item, itemUrl: reader.result})
+      this.setState({item: item, item_url: reader.result})
     };
 
     reader.readAsDataURL(item)
@@ -59,7 +59,7 @@ class AddPage extends React.Component {
       <Container>
         <Row>
           <Col>
-            <form className="wrapper" style={{height: '50vh'}} onSubmit={this.onSubmit}>
+            <form className="column-center" style={{height: '50vh', marginTop: '25vh'}} onSubmit={this.onSubmit}>
               <DatePicker className="picker"
                           dateFormat="YYYY-MM-DD"
                           selected={this.state.date}
@@ -68,8 +68,8 @@ class AddPage extends React.Component {
               <div className="holder">
                 <input type="file" id="picture" onChange={this.setPicture}/>
                 <label className="uploader" htmlFor="picture">Add picture</label>
-                {this.state.itemUrl ?
-                  <img className="viewer" src={this.state.itemUrl} alt=""/>
+                {this.state.item_url ?
+                  <img className="viewer" src={this.state.item_url} alt=""/>
                   : null}
               </div>
               <button className="button" type="submit">Add</button>

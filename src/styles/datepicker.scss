@@ -14,14 +14,8 @@ $grey-dark: #B7BCB9;
   font-family: 'Droid Sans', sans-serif;
   font-size: 14px;
 
-  background-color: $white-light;
-  background-image: url("../media/icons/calendar.svg");
-  background-position: calc(100% - 10px) center;
-  background-size: 35px;
-  background-repeat: no-repeat;
-  border: 1px dotted $black-light;
-
-  padding: 20px;
+  background-image: url("../media/icons/calendar.svg") !important;
+  padding-left: 15px;
 
   &:focus {
     border: 1px solid $black-dark;
