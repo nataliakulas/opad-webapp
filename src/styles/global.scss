@@ -381,58 +381,6 @@ input[name=password_repeat] {
   background-image: url("../media/icons/check.svg");
 }
 
-.holder {
-  width: 200px;
-  height: 200px;
-
-  position: relative;
-
-  input[type='file'] {
-    width: 0.1px;
-    height: 0.1px;
-    position: absolute;
-    z-index: -1;
-    overflow: hidden;
-    opacity: 0;
-
-    &:focus + .uploader,
-    & + .uploader:hover {
-      border: 1px solid $black-light;
-    }
-  }
-
-  .uploader {
-    width: 200px;
-    height: 200px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    text-transform: uppercase;
-
-    border: 1px dotted $black-light;
-
-    cursor: pointer;
-  }
-
-  .viewer {
-    width: 200px;
-    height: 200px;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-
-    border: 1px solid transparent;
-  }
-}
-
 .box-grid {
   position: relative;
   display: flex;
@@ -506,3 +454,61 @@ input[name=password_repeat] {
   }
 }
 
+.upload-wrapper {
+  width: 400px;
+  height: 400px;
+
+  position: relative;
+
+  input[type='file'] {
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+    opacity: 0;
+
+    &:focus + .upload,
+    & + .upload:hover {
+      border: 1px solid $black-light;
+    }
+  }
+}
+
+.upload {
+  width: 400px;
+  height: 400px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  text-transform: uppercase;
+
+  background-color: $white-light;
+  background-image: url("../media/icons/photo.svg");
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: calc(50% + 70px) center;
+  border: 1px dotted $black-light;
+
+  cursor: pointer;
+  box-sizing: border-box;
+
+  &.has-item {
+    z-index: -1;
+  }
+}
+
+.cropper-view-box {
+  outline: $orange-light solid 1px;
+}
+
+.cropper-line, .cropper-point,
+.cropper-point.point-se:before {
+  background-color: $orange-light;
+}
