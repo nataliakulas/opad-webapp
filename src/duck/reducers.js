@@ -1,4 +1,4 @@
-import {AUTH_USER, GET_ITEMS} from './actions';
+import {AUTH_USER, GET_ITEMS, SET_PATH} from './actions';
 
 export function sessionReducer(state = {authUser: null}, action) {
   switch (action.type) {
@@ -26,4 +26,16 @@ export function itemsReducer(state = {items: []}, action) {
   }
 }
 
+export function pathReducer(state = {path: ''}, action) {
+  switch (action.type) {
+    case SET_PATH: {
+      return {
+        ...state,
+        path: action.payload
+      }
+    }
+    default:
+      return state;
+  }
+}
 

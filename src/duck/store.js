@@ -1,11 +1,12 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk'
-import {sessionReducer, itemsReducer} from './reducers.js'
+import {sessionReducer, itemsReducer,pathReducer} from './reducers.js'
 
 
 const rootReducer = combineReducers({
   sessionState: sessionReducer,
-  itemsState: itemsReducer
+  itemsState: itemsReducer,
+  pathState:pathReducer
 });
 
 const store = createStore(
