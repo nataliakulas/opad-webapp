@@ -1,18 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {AUTH_USER} from '../duck/actions';
+import {userAuth} from '../duck/actions';
 
 import {auth} from '../firebase/config';
 
 const mapDispatchToProps = dispatch => ({
-  onsetAuthUser: authUser => dispatch({authUser, type: AUTH_USER})
+  userAuth: authUser => dispatch(userAuth(authUser))
 });
 
 const authentication = (Component) => {
   class Authentication extends React.Component {
     componentDidMount() {
       auth.onAuthStateChanged(authUser => {
-        authUser ? this.props.onsetAuthUser(authUser) : this.props.onsetAuthUser(null)
+        authUser ? this.props.userAuth(authUser) : this.props.userAuth(null)
       })
     }
 

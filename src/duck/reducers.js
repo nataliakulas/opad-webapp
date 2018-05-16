@@ -5,7 +5,7 @@ export function sessionReducer(state = {authUser: null}, action) {
     case AUTH_USER : {
       return {
         ...state,
-        authUser: action.authUser
+        authUser: action.payload
       };
     }
     default :
