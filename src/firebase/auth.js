@@ -12,6 +12,6 @@ export const logIn = (email, password) =>
 export const resetPassword = (email) =>
   auth.sendPasswordResetEmail(email);
 
-// Password Change
+// Password Update
 export const updatePassword = (password) =>
   auth.currentUser.updatePassword(password);

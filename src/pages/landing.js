@@ -6,10 +6,10 @@ import {withRouter} from 'react-router-dom';
 
 import * as routes from '../shared/routes';
 
-import FlipBox from '../components/FlipBox';
+import {propByKey} from '../shared/helpers';
 import {logIn, registerUser, resetPassword} from '../firebase/auth';
 import {createUser} from '../firebase/db';
-import {propByKey} from "../shared/helpers";
+import FlipBox from '../components/FlipBox';
 
 
 const mapStateToProps = (state) => ({
