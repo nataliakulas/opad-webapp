@@ -37,9 +37,9 @@ class DashboardPage extends React.Component {
     }
 
     return (
-      <Container>
+      <Container style={{height: '100vh', overflow: 'hidden'}}>
         <Row>
-          <Col xs={10} offset={{xs: 1}}>
+          <Col>
             <div className="box-grid">
               {items.map((item, i) => {
                 i++;

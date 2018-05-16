@@ -41,6 +41,10 @@ class AddPage extends React.Component {
     this.props.getItems();
   }
 
+  componentWillUnmount() {
+    this.props.getItems(null)
+  }
+
   cropItem = () => {
     let data_url = this.refs.cropper.getCroppedCanvas().toDataURL();
 
@@ -64,7 +68,7 @@ class AddPage extends React.Component {
 
   onSubmit = (e) => {
     const userId = auth.currentUser.uid;
-    const name = moment(this.state.date).format('YYYY-MM-D');
+    const name = moment(this.state.date).format('YYYY-MM-DD');
     const data_url = this.state.data_url;
 
     let names = [];

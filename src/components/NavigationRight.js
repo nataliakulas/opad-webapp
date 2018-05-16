@@ -53,8 +53,9 @@ class NavigationRight extends React.Component {
           <ul className="navigation right">
             <li className="ico power" onClick={() => auth.signOut()}><span className="nav-label">Log out</span></li>
             <li className={`ico user${this.props.path === '/profile' ? " active" : ""}`} onClick={() => this.goTo('profile')}><span className="nav-label">Profile</span></li>
-            <li className={`ico settings disabled${this.props.path === '/settings' ? " active" : ""}`} onClick={() => this.goTo('settings')}><span className="nav-label">Settings</span></li>
-            <li className={`ico info disabled${this.props.info === '/profile' ? " active" : ""}`} onClick={() => this.goTo('info')}><span className="nav-label">Info</span></li>
+            <li className={`ico settings disabled`}><span className="nav-label">Settings</span></li>
+            <li className={`ico photo disabled`}><span className="nav-label">Photo</span></li>
+            <li className={`ico info disabled`}><span className="nav-label">Info</span></li>
           </ul> : null
         }
       </div>
