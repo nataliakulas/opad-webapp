@@ -9,6 +9,7 @@ import '../styles/datepicker.css'
 import {auth, storage} from '../firebase/config';
 import {createDbRef} from '../firebase/db';
 
+
 class AddPage extends React.Component {
   constructor(props) {
     super(props);

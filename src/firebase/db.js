@@ -4,7 +4,7 @@ import {db, storage} from './config';
 export const createUser = (id, name, email, items) =>
   db.ref(`${id}`).set({
     name,
-    email,
+    email: email,
     items: items
   });
 

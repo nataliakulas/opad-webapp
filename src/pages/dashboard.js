@@ -11,6 +11,7 @@ import {getItems} from '../duck/actions';
 
 import Box from '../components/Box';
 
+
 const mapStateToProps = (state) => ({
   authUser: state.sessionState.authUser,
   items: state.itemsState.items
