@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
   authUser: state.sessionState.authUser
 });
 
-class NavigationLeftAuth extends React.Component {
+class NavigationLeft extends React.Component {
   goTo(route) {
     const {history} = this.props;
 
@@ -29,18 +29,18 @@ class NavigationLeftAuth extends React.Component {
 
   render() {
     return (
-      <ul className="navigation left">
-        <li className={`ico home`} onClick={() => this.goTo('dashboard')}><span className="nav-label">Dashboard</span></li>
-        <li className={`ico camera`} onClick={() => this.goTo('add')}><span className="nav-label">Add</span></li>
-        <li className={`ico search disabled`}><span className="nav-label">Search</span></li>
-      </ul>
+      <div>
+        {this.props.authUser ?
+          <ul className="navigation left">
+            <li className={`ico home`} onClick={() => this.goTo('dashboard')}><span className="nav-label">Dashboard</span></li>
+            <li className={`ico camera`} onClick={() => this.goTo('add')}><span className="nav-label">Add</span></li>
+            <li className={`ico search disabled`}><span className="nav-label">Search</span></li>
+          </ul> : null
+        }
+      </div>
     )
   }
 }
-
-
-const NavigationLeft = ({authUser, history}) =>
-  <div>{authUser ? <NavigationLeftAuth history={history}/> : null}</div>
 
 export default compose(
   connect(mapStateToProps),

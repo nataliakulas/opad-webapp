@@ -66,7 +66,9 @@ class Register extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    props.authUser ? this.props.history.push(routes.DASHBOARD) : null
+    if (props.authUser) {
+      this.props.history.push(routes.DASHBOARD)
+    }
   }
 
   onRegister = (e) => {

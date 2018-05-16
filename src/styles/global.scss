@@ -181,6 +181,10 @@ body {
   &.settings {
     background-image: url("../media/icons/settings.svg");
   }
+
+  &.info {
+    background-image: url("../media/icons/info.svg");
+  }
 }
 
 @keyframes opacity-animation {
