@@ -29,9 +29,11 @@ class Box extends React.Component {
             <p>{this.props.name}</p>
           </div>
         </div>
-        <div className="back column-center" onClick={this.flipBack}>
+        <div className="back column-space-around" onClick={this.flipBack}>
           <p>{this.props.name}</p>
           <ul>
+            <li className="ico unfav disabled"/>
+            <li className="ico download disabled"/>
             <li className="ico delete" onClick={this.props.remove}/>
           </ul>
         </div>

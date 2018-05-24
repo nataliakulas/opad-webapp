@@ -160,16 +160,17 @@ p {
   background-repeat: no-repeat;
   background-position: center;
 
+  &.disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+  }
+
   &.home {
     background-image: url("../media/icons/home.svg");
   }
 
   &.camera {
     background-image: url("../media/icons/camera.svg");
-  }
-
-  &.fav {
-    background-image: url("../media/icons/fav.svg");
   }
 
   &.menu {
@@ -211,12 +212,32 @@ p {
   &.delete {
     background-image: url("../media/icons/trash-can.svg");
   }
+
+  &.download {
+    background-image: url("../media/icons/download.svg");
+  }
+
+  &.unfav {
+    background-image: url("../media/icons/unfav.svg");
+  }
+
+  &.fav {
+    background-image: url("../media/icons/fav.svg");
+  }
+
 }
 
 .column-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.column-space-around {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -327,6 +348,11 @@ p {
   position: relative;
 
   ul {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     margin: 0;
     padding: 0;
 
