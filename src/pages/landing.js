@@ -164,7 +164,7 @@ class LandingPage extends React.Component {
       <Container>
         <Row>
           <Col>
-            <div className="landing column-center">
+            <div className="fullpage column-center">
               <div className={authUser ? "auth flip-wrapper column-center" : (this.state.flip ? "non-auth flip-wrapper column-center flipped" : "non-auth flip-wrapper column-center")}>
                 <div className="front column-center" onClick={this.flip}>
                   <p>No sharing, it's all private,<br/> just take, <br/> One Picture a Day.</p>

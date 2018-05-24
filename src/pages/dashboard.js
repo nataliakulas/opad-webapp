@@ -28,14 +28,23 @@ class DashboardPage extends React.Component {
     this.props.getItems();
   }
 
-  removeItem(item) {
+  removeItem(name) {
     const userId = auth.currentUser.uid;
 
-    if (item) {
-      removeDbRefs(item, userId, this.props.getItems())
-    }
+    removeDbRefs(name, userId)
   };
 
+  downloadItem(url) {
+    if (url) {
+      let xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      xhr.onload = (event) => {
+        let blob = xhr.response;
+      };
+      xhr.open('GET', url);
+      xhr.send();
+    }
+  }
 
   render() {
     let items = [];
@@ -48,24 +57,28 @@ class DashboardPage extends React.Component {
     }
 
     return (
-      <Container style={{height: '100vh', overflow: 'hidden'}}>
+      <Container style={{minHeight: '100vh'}}>
         <Row>
           <Col>
-            <div className="box-grid">
-              {items.map((item, i) => {
-                i++;
-                return (
-                  <Box key={i} src={item.url} name={item.name}
-                       remove={() => this.removeItem(item.name)}
-                       className="small"
-                       margin={10}
-                  />
-                )
-              })}
-            </div>
+            {items.length === 0 ?
+              <div className="fullpage column-center">
+                <p>One picture a day</p></div> :
+              <div className="box-grid">
+                {items.map((item, i) => {
+                  i++;
+                  return (
+                    <Box key={i} src={item.url} name={item.name}
+                         remove={() => this.removeItem(item.name)}
+                         download={() => this.downloadItem(item.url)}
+                         className="small"
+                         margin={10}
+                    />
+                  )
+                })}
+              </div>
+            }
           </Col>
-        </Row>
-      </Container>
+        </Row> </Container>
     )
   }
 }

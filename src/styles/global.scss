@@ -58,17 +58,16 @@ p {
 }
 
 .background {
-  width: 100vw;;
-  height: 100vh;
+  width: 100vw;
+  min-height: 100vh;
 
   background-image: url("../media/subtle_dots.png");
 }
 
 .navigation {
   width: 90px;
-  height: 100vh;
 
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   z-index: 1000;
@@ -81,6 +80,7 @@ p {
 
   margin: 0;
   padding: 0;
+  background-image: url("../media/subtle_dots.png");
   background-color: transparent;
   box-sizing: border-box;
 
@@ -262,7 +262,7 @@ p {
   align-items: center;
 }
 
-.landing {
+.fullpage {
   height: 100vh;
   perspective: 1000px;
 
@@ -356,13 +356,12 @@ p {
 
   position: relative;
 
-  ul {
+  .back-menu {
     width: 80%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 0;
     padding: 0;
 
     li {
@@ -563,6 +562,30 @@ input[name=password_repeat] {
   }
 }
 
+.cropper-view-box {
+  outline: $orange-light solid 1px;
+}
+
+.cropper-line, .cropper-point,
+.cropper-point.point-se:before {
+  background-color: $orange-light;
+}
+
+.loader-wrapper {
+  width: 400px;
+  height: 400px;
+  background-color: transparent;
+}
+
+.loader {
+  width: 200px;
+  height: 200px;
+  background-color: $black-light;
+
+  margin: 100px auto;
+  animation: rotate 1.5s infinite ease-in-out;
+}
+
 .upload-wrapper {
   width: 400px;
   height: 400px;
@@ -611,28 +634,4 @@ input[name=password_repeat] {
   &.has-item {
     z-index: -1;
   }
-}
-
-.cropper-view-box {
-  outline: $orange-light solid 1px;
-}
-
-.cropper-line, .cropper-point,
-.cropper-point.point-se:before {
-  background-color: $orange-light;
-}
-
-.loader-wrapper {
-  width: 400px;
-  height: 400px;
-  background-color: transparent;
-}
-
-.loader {
-  width: 200px;
-  height: 200px;
-  background-color: $black-light;
-
-  margin: 100px auto;
-  animation: rotate 1.5s infinite ease-in-out;
 }

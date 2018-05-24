@@ -15,8 +15,6 @@ export const createDbRef = (item_url, name, uid) => {
         db.ref(`${uid}/items/${name}`).set({url}, (error) => {
           if (error) {
             console.log("Picture adding failed")
-          } else {
-            console.log("Picture added")
           }
         })
       }
@@ -26,13 +24,12 @@ export const createDbRef = (item_url, name, uid) => {
 export const getDbRefs = (uid) =>
   db.ref(`${uid}/items`).once('value');
 
-export const removeDbRefs = (name, uid, callback) => {
+export const removeDbRefs = (name, uid) => {
   const storageRef = storage.ref().child(`${uid}/${name}`);
 
   storageRef.delete()
     .then(() => {
       db.ref(`${uid}/items/${name}`).remove()
-        .then(() => callback)
         .catch(error => console.log(error))
     })
     .catch(error => console.log(error))
