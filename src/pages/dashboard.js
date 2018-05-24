@@ -7,7 +7,7 @@ import moment from 'moment';
 import {authCondition} from '../shared/helpers';
 import authorization from '../shared/authorization';
 
-import {getItems} from '../duck/actions';
+import {getItems, removeItem} from '../duck/actions';
 import {auth} from '../firebase/config';
 import {removeDbRefs} from '../firebase/db';
 
@@ -20,7 +20,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getItems: () => dispatch(getItems())
+  getItems: () => dispatch(getItems()),
+  removeItem: name => dispatch(removeItem(name))
 });
 
 class DashboardPage extends React.Component {
@@ -31,7 +32,7 @@ class DashboardPage extends React.Component {
   removeItem(name) {
     const userId = auth.currentUser.uid;
 
-    removeDbRefs(name, userId)
+    removeDbRefs(name, userId, this.props.removeItem(name));
   };
 
   downloadItem(url) {
@@ -62,7 +63,7 @@ class DashboardPage extends React.Component {
           <Col>
             {items.length === 0 ?
               <div className="fullpage column-center">
-                <p>One picture a day</p></div> :
+                <p>One Picture a Day</p></div> :
               <div className="box-grid">
                 {items.map((item, i) => {
                   i++;

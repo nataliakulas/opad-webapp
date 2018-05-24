@@ -24,7 +24,7 @@ export const createDbRef = (item_url, name, uid) => {
 export const getDbRefs = (uid) =>
   db.ref(`${uid}/items`).once('value');
 
-export const removeDbRefs = (name, uid) => {
+export const removeDbRefs = (name, uid, callback) => {
   const storageRef = storage.ref().child(`${uid}/${name}`);
 
   storageRef.delete()
@@ -32,5 +32,6 @@ export const removeDbRefs = (name, uid) => {
       db.ref(`${uid}/items/${name}`).remove()
         .catch(error => console.log(error))
     })
+    .then(() => callback)
     .catch(error => console.log(error))
 };

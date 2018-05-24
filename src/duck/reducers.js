@@ -1,4 +1,4 @@
-import {AUTH_USER, GET_ITEMS, SET_PATH} from './actions';
+import {AUTH_USER, GET_ITEMS, REMOVE_ITEM, SET_PATH} from './actions';
 
 export function sessionReducer(state = {authUser: null}, action) {
   switch (action.type) {
@@ -20,6 +20,21 @@ export function itemsReducer(state = {items: []}, action) {
         ...state,
         items: action.payload
       };
+    }
+    case REMOVE_ITEM: {
+      const name = action.payload;
+      const items = []
+
+      state.items.forEach(item => {
+        if (name !== item.name) {
+          items.push(item)
+        }
+      });
+
+      return {
+        ...state,
+        items: items
+      }
     }
     default:
       return state;
