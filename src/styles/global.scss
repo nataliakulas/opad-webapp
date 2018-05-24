@@ -21,6 +21,11 @@ body {
   font-family: 'Droid Sans', sans-serif;
 }
 
+p {
+  font-family: "Droid Sans", sans-serif;
+  margin: 0 auto;
+}
+
 :focus {
   outline-color: $black-light;
   outline-offset: 1px;
@@ -202,6 +207,17 @@ body {
   &.best-loved {
     background-image: url("../media/icons/heart.svg");
   }
+
+  &.delete {
+    background-image: url("../media/icons/trash-can.svg");
+  }
+}
+
+.column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes opacity-animation {
@@ -216,21 +232,25 @@ body {
   }
 }
 
-.column-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .landing {
   height: 100vh;
   perspective: 1000px;
 
   p {
+    font-family: 'Cabin', sans-serif;
     font-size: 16px;
     line-height: 22px;
     text-align: center;
+  }
+
+  form {
+    input:first-of-type {
+      margin-top: 20px;
+    }
+
+    button {
+      margin-top: 10px;
+    }
   }
 
   .auth {
@@ -246,51 +266,18 @@ body {
     cursor: pointer;
     animation: opacity-animation 5s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
 
-    transition: 0.6s;
-    transform-style: preserve-3d;
-
-    position: relative;
-
     &:hover {
       animation: none;
       background-color: $black-dark;
     }
 
-    .front, .back {
-      backface-visibility: hidden;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-
-    .front {
-      z-index: 2;
-      transform: rotateX(0deg);
-    }
-
-    .back {
-      transform: rotateX(180deg);
-
-      form {
-        input:first-of-type {
-          margin-top: 20px;
-        }
-
-        button {
-          margin-top: 10px;
-        }
-      }
-    }
-
     &.flipped {
-      transform: rotateX(180deg);
-
-      border-color: $white-light;
-      background-color: $white-light;
       cursor: default;
       animation: none;
+
+      &:hover {
+        background-color: $white-light;
+      }
 
       .front {
         opacity: 0;
@@ -333,6 +320,69 @@ body {
   height: 400px;
 
   box-sizing: border-box;
+
+  transition: 0.6s;
+  transform-style: preserve-3d;
+
+  position: relative;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      width: 40px;
+      height: 40px;
+
+      background-size: 100%;
+      background-repeat: no-repeat;
+
+      list-style-type: none;
+      cursor: pointer;
+    }
+  }
+
+  &.small {
+    width: 200px;
+    height: 200px;
+  }
+
+  .front, .back {
+    backface-visibility: hidden;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .front {
+    z-index: 2;
+    transform: rotateX(0deg);
+    border: 1px solid transparent;
+  }
+
+  .back {
+    transform: rotateX(180deg);
+    border: 1px solid $white-light;
+  }
+
+  &.flipped {
+    transform: rotateX(180deg);
+
+    border: 1px solid $white-light;
+    background-color: $white-light;
+
+    .front {
+      opacity: 0;
+      z-index: -1;
+    }
+
+    .back {
+      z-index: 10;
+    }
+  }
 }
 
 .flip-box {
@@ -410,7 +460,6 @@ input[name=password_repeat] {
     height: 200px;
     min-width: 200px;
     min-height: 200px;
-    margin: 10px;
     position: relative;
     cursor: pointer;
     overflow: hidden;
@@ -432,8 +481,6 @@ input[name=password_repeat] {
     }
 
     .content {
-      width: 200px;
-      height: 200px;
       position: absolute;
       top: 0;
       bottom: 0;
@@ -441,18 +488,18 @@ input[name=password_repeat] {
       right: 0;
       z-index: -1;
       opacity: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
 
       background-color: $black-light;
+      border: 1px solid transparent;
 
       p {
-        font-family: "Droid Sans", sans-serif;
         color: $white-light;
-        margin: 0 auto;
       }
     }
+  }
+
+  &.flipped {
+    transform: perspective(1000px) rotateX(180deg);
   }
 }
 
@@ -474,6 +521,17 @@ input[name=password_repeat] {
   &:hover {
     background-color: $black-dark;
   }
+
+  &:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+  }
+}
+
+.loader {
+  width: 400px;
+  height: 400px;
+  background-color: transparent;
 }
 
 .upload-wrapper {

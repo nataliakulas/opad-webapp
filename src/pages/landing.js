@@ -9,6 +9,7 @@ import * as routes from '../shared/routes';
 import {propByKey} from '../shared/helpers';
 import {logIn, registerUser, resetPassword} from '../firebase/auth';
 import {createUser} from '../firebase/db';
+
 import FlipBox from '../components/FlipBox';
 
 

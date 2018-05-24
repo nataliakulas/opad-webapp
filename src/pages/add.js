@@ -29,6 +29,7 @@ class AddPage extends React.Component {
 
     this.state = {
       loading: false,
+      complete: false,
       item: '',
       url: '',
       data_url: '',
@@ -52,7 +53,19 @@ class AddPage extends React.Component {
   };
 
   setDate = (date) => {
-    this.setState({date: date})
+    let dates = [];
+
+    if (this.props.items.length > 0) {
+      this.props.items.forEach(item => {
+        dates.push(item.name)
+      });
+
+      if (dates.includes(moment(date).format('YYYY-MM-DD'))) {
+        alert("One picture from this day already exist! Choose another date")
+      } else {
+        this.setState({date: date, complete: false})
+      }
+    }
   };
 
   setItem = (e) => {
@@ -71,28 +84,22 @@ class AddPage extends React.Component {
     const name = moment(this.state.date).format('YYYY-MM-DD');
     const data_url = this.state.data_url;
 
-    let names = [];
+    this.setState({loading: true});
 
-    if (this.props.items.length > 0) {
-      this.props.items.forEach(item => {
-        names.push(item.name)
-      });
-
-      if (names.includes(name)) {
-        alert("One picture from this day already exist!")
-      } else {
-        this.setState({loading: true});
-
-        storage.ref().child(userId + '/' + name)
-          .putString(data_url, 'data_url')
-          .then((snap) => {
-            this.setState({loading: false});
-            createDbRef(snap.metadata.fullPath, name, userId)
-          })
-          .catch(error => this.setState({error: error.message}));
-
-      }
-    }
+    storage.ref().child(userId + '/' + name)
+      .putString(data_url, 'data_url')
+      .then((snap) => {
+        this.setState({loading: false});
+        createDbRef(snap.metadata.fullPath, name, userId)
+      })
+      .then(() => this.setState({
+        complete: true,
+        item: '',
+        url: '',
+        data_url: '',
+        error: ''
+      }))
+      .catch(error => this.setState({error: error.message}));
 
     e.preventDefault();
   };
@@ -108,17 +115,24 @@ class AddPage extends React.Component {
                           selected={this.state.date}
                           maxDate={moment()}
                           onChange={this.setDate}/>
-              <div className="upload-wrapper">
-                <Cropper ref="cropper"
-                         src={this.state.url ? this.state.url : ""}
-                         style={{height: 400, width: 400}}
-                         aspectRatio={1}
-                         guides={true}
-                         crop={this.cropItem}/>
-                <input type="file" id="item" onChange={this.setItem}/>
-                <label className={`upload${this.state.item ? " has-item" : ""}`} htmlFor="item">Add picture</label>
-              </div>
-              <button className="button" type="submit">Add</button>
+              {this.state.loading ?
+                <div className="loader">Loading...</div> :
+                (this.state.complete ?
+                    <div style={{width: 400, height: 400}}>
+                      Upload complete add another picture from another day or go to dashboard to view them</div> :
+                    <div className="upload-wrapper">
+                      <Cropper ref="cropper"
+                               src={this.state.url ? this.state.url : ""}
+                               style={{height: 400, width: 400}}
+                               aspectRatio={1}
+                               guides={true}
+                               crop={this.cropItem}/>
+                      <input type="file" id="item" onChange={this.setItem}/>
+                      <label className={`upload${this.state.item ? " has-item" : ""}`} htmlFor="item">Add picture</label>
+                    </div>
+                )
+              }
+              <button disabled={this.state.complete} className="button" type="submit">Add</button>
             </form>
           </Col>
         </Row>

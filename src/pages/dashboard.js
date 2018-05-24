@@ -8,6 +8,8 @@ import {authCondition} from '../shared/helpers';
 import authorization from '../shared/authorization';
 
 import {getItems} from '../duck/actions';
+import {auth} from '../firebase/config';
+import {removeDbRefs} from '../firebase/db';
 
 import Box from '../components/Box';
 
@@ -25,6 +27,15 @@ class DashboardPage extends React.Component {
   componentDidMount() {
     this.props.getItems();
   }
+
+  removeItem(item) {
+    const userId = auth.currentUser.uid;
+
+    if (item) {
+      removeDbRefs(item, userId, this.props.getItems())
+    }
+  };
+
 
   render() {
     let items = [];
@@ -44,7 +55,11 @@ class DashboardPage extends React.Component {
               {items.map((item, i) => {
                 i++;
                 return (
-                  <Box key={i} src={item.url} name={item.name}/>
+                  <Box key={i} src={item.url} name={item.name}
+                       remove={() => this.removeItem(item.name)}
+                       className="small"
+                       margin={10}
+                  />
                 )
               })}
             </div>
