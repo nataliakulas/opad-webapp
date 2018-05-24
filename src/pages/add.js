@@ -116,7 +116,9 @@ class AddPage extends React.Component {
                           maxDate={moment()}
                           onChange={this.setDate}/>
               {this.state.loading ?
-                <div className="loader">Loading...</div> :
+                <div className="loader-wrapper">
+                  <div className="loader"/>
+                </div> :
                 (this.state.complete ?
                     <div style={{width: 400, height: 400}}>
                       Upload complete add another picture from another day or go to dashboard to view them</div> :

@@ -7,6 +7,27 @@ $white-dark: #DFE5E1;
 $grey-light: #CBD1CD;
 $grey-dark: #B7BCB9;
 
+@keyframes rotate-animation {
+  0% {
+    transform: perspective(1000px) rotateX(0deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(180deg);
+  }
+}
+
+@keyframes opacity-animation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 body {
   font-family: 'Cabin', sans-serif;
   font-size: 14px;
@@ -239,18 +260,6 @@ p {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-}
-
-@keyframes opacity-animation {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.75;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .landing {
@@ -525,7 +534,7 @@ input[name=password_repeat] {
   }
 
   &.flipped {
-    transform: perspective(1000px) rotateX(180deg);
+    animation: rotate 0.5s ease-in-out;
   }
 }
 
@@ -552,12 +561,6 @@ input[name=password_repeat] {
     opacity: 0.75;
     cursor: not-allowed;
   }
-}
-
-.loader {
-  width: 400px;
-  height: 400px;
-  background-color: transparent;
 }
 
 .upload-wrapper {
@@ -617,4 +620,19 @@ input[name=password_repeat] {
 .cropper-line, .cropper-point,
 .cropper-point.point-se:before {
   background-color: $orange-light;
+}
+
+.loader-wrapper {
+  width: 400px;
+  height: 400px;
+  background-color: transparent;
+}
+
+.loader {
+  width: 200px;
+  height: 200px;
+  background-color: $black-light;
+
+  margin: 100px auto;
+  animation: rotate 1.5s infinite ease-in-out;
 }
