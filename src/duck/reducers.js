@@ -21,12 +21,6 @@ export function itemsReducer(state = {items: []}, action) {
         items: action.payload
       };
     }
-    case GET_FAV_ITEMS: {
-      return {
-        ...state,
-        items: action.payload
-      };
-    }
     case REMOVE_ITEM: {
       const name = action.payload;
       const items = [];
@@ -41,6 +35,12 @@ export function itemsReducer(state = {items: []}, action) {
         ...state,
         items: items
       }
+    }
+    case GET_FAV_ITEMS: {
+      return {
+        ...state,
+        items: action.payload
+      };
     }
     case TOGGLE_FAV_ITEM: {
       const name = action.payload;
