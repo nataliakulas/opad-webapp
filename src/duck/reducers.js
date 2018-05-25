@@ -21,27 +21,18 @@ export function itemsReducer(state = {items: []}, action) {
         items: action.payload
       };
     }
+    case GET_FAV_ITEMS: {
+      return {
+        ...state,
+        items: action.payload
+      };
+    }
     case REMOVE_ITEM: {
       const name = action.payload;
       const items = [];
 
       state.items.forEach(item => {
         if (name !== item.name) {
-          items.push(item)
-        }
-      });
-
-      return {
-        ...state,
-        items: items
-      }
-    }
-    case GET_FAV_ITEMS: {
-      const name = action.payload;
-      const items = [];
-
-      state.items.forEach(item => {
-        if (item.name === name && item.fav) {
           items.push(item)
         }
       });

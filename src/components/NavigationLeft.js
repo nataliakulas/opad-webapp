@@ -41,6 +41,9 @@ class NavigationLeft extends React.Component {
       case 'dashboard' :
         history.push(routes.DASHBOARD);
         break;
+      case 'best-loved' :
+        history.push(routes.BEST_LOVED);
+        break;
       case 'add':
         history.push(routes.ADD);
         break;
@@ -57,7 +60,7 @@ class NavigationLeft extends React.Component {
             <li className={`ico home${this.props.path === '/dashboard' ? " active" : ""}`} onClick={() => this.goTo('dashboard')}><span className="nav-label">Dashboard</span></li>
             <li className={`ico camera${this.props.path === '/add' ? " active" : ""}`} onClick={() => this.goTo('add')}><span className="nav-label">Add</span></li>
             <li className={`ico search disabled`}><span className="nav-label">Search</span></li>
-            <li className={`ico best-loved disabled`}><span className="nav-label">Best-loved</span></li>
+            <li className={`ico best-loved${this.props.path === '/best-loved' ? " active" : ""}`} onClick={() => this.goTo('best-loved')}><span className="nav-label">Best loved</span></li>
             <li className={`ico fluke disabled`}><span className="nav-label">Fluke</span></li>
           </ul> : null
         }

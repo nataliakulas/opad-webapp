@@ -31,3 +31,23 @@ export function getItems() {
       .then(() => dispatch({type: GET_ITEMS, payload: items}));
   }
 }
+
+export function getFavItems() {
+  return dispatch => {
+    const userId = auth.currentUser.uid;
+    const items = [];
+
+    getDbRefs(userId)
+      .then(snap => {
+        snap.forEach(child => {
+          let item = child.val();
+          item.name = child.key;
+
+          if (item.fav) {
+            items.push(item)
+          }
+        });
+      })
+      .then(() => dispatch({type: GET_FAV_ITEMS, payload: items}));
+  }
+}
