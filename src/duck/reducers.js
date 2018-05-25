@@ -1,4 +1,4 @@
-import {AUTH_USER, GET_ITEMS, REMOVE_ITEM, SET_PATH} from './actions';
+import {AUTH_USER, GET_ITEMS, REMOVE_ITEM, SET_PATH, GET_FAV_ITEMS, TOGGLE_FAV_ITEM} from './actions';
 
 export function sessionReducer(state = {authUser: null}, action) {
   switch (action.type) {
@@ -29,6 +29,38 @@ export function itemsReducer(state = {items: []}, action) {
         if (name !== item.name) {
           items.push(item)
         }
+      });
+
+      return {
+        ...state,
+        items: items
+      }
+    }
+    case GET_FAV_ITEMS: {
+      const name = action.payload;
+      const items = [];
+
+      state.items.forEach(item => {
+        if (item.name === name && item.fav) {
+          items.push(item)
+        }
+      });
+
+      return {
+        ...state,
+        items: items
+      }
+    }
+    case TOGGLE_FAV_ITEM: {
+      const name = action.payload;
+      const fav = action.data;
+      const items = [];
+
+      state.items.forEach(item => {
+        if (item.name === name) {
+          item.fav = fav;
+        }
+        items.push(item)
       });
 
       return {

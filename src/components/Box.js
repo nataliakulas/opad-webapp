@@ -5,7 +5,7 @@ class Box extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      flip: false,
+      flip: false
     }
   }
 
@@ -33,7 +33,7 @@ class Box extends React.Component {
           <p>{this.props.name}</p>
           <p>{this.props.tag}</p>
           <ul className="back-menu">
-            <li className={`ico ${this.props.fav ? "fav" : "unfav"}`}/>
+            <li className={`ico ${this.props.fav ? "fav" : "unfav"}`} onClick={this.props.toggle}/>
             <li className="ico download" onClick={this.props.download}/>
             <li className="ico delete" onClick={this.props.remove}/>
           </ul>

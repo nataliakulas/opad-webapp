@@ -35,3 +35,12 @@ export const removeDbRefs = (name, uid, callback) => {
     .then(() => callback)
     .catch(error => console.log(error))
 };
+
+export const updateDbRefs = (name, fav, uid, callback) => {
+  let update = {};
+  update['fav'] = fav;
+
+  db.ref(`${uid}/items/${name}`).update(update)
+    .then(() => callback)
+    .catch(error => console.log(error))
+};

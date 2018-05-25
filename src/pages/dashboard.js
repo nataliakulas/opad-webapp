@@ -7,9 +7,9 @@ import moment from 'moment';
 import {authCondition} from '../shared/helpers';
 import authorization from '../shared/authorization';
 
-import {getItems, removeItem} from '../duck/actions';
+import {getItems, removeItem, toggleFavItem} from '../duck/actions';
 import {auth} from '../firebase/config';
-import {removeDbRefs} from '../firebase/db';
+import {removeDbRefs, updateDbRefs} from '../firebase/db';
 
 import Box from '../components/Box';
 
@@ -21,7 +21,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   getItems: () => dispatch(getItems()),
-  removeItem: name => dispatch(removeItem(name))
+  removeItem: name => dispatch(removeItem(name)),
+  toggleFavItem: (name, fav) => dispatch(toggleFavItem(name, fav))
 });
 
 class DashboardPage extends React.Component {
@@ -33,6 +34,12 @@ class DashboardPage extends React.Component {
     const userId = auth.currentUser.uid;
 
     removeDbRefs(name, userId, this.props.removeItem(name));
+  };
+
+  toggleFavItem(name, fav) {
+    const userId = auth.currentUser.uid;
+
+    updateDbRefs(name, !fav, userId, this.props.toggleFavItem(name, !fav));
   };
 
   downloadItem(url) {
@@ -49,7 +56,7 @@ class DashboardPage extends React.Component {
 
   render() {
     let items = [];
-    if (this.props.items.length > 0) {
+    if (this.props.items && this.props.items.length > 0) {
       items = this.props.items;
 
       items.sort((prev, next) => {
@@ -69,6 +76,7 @@ class DashboardPage extends React.Component {
                   i++;
                   return (
                     <Box key={i} src={item.url} name={item.name} tag={item.tag} fav={item.fav}
+                         toggle={() => this.toggleFavItem(item.name, item.fav)}
                          remove={() => this.removeItem(item.name)}
                          download={() => this.downloadItem(item.url)}
                          className="small"
