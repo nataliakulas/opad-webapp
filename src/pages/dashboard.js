@@ -42,14 +42,24 @@ class DashboardPage extends React.Component {
     updateDbRefs(name, !fav, userId, this.props.toggleFavItem(name, !fav));
   };
 
-  downloadItem(url) {
+  downloadItem(url, name) {
     if (url) {
       let xhr = new XMLHttpRequest();
+
+      xhr.open('GET', url, true);
       xhr.responseType = 'blob';
+
       xhr.onload = (event) => {
         let blob = xhr.response;
+
+        let tag = document.createElement('a');
+        tag.href = url;
+        tag.download = name;
+        tag.target = "_blank"
+        document.body.appendChild(tag);
+        tag.click();
+        document.body.removeChild(tag);
       };
-      xhr.open('GET', url);
       xhr.send();
     }
   }
@@ -78,7 +88,7 @@ class DashboardPage extends React.Component {
                     <Box key={i} src={item.url} name={item.name} tag={item.tag} fav={item.fav}
                          toggle={() => this.toggleFavItem(item.name, item.fav)}
                          remove={() => this.removeItem(item.name)}
-                         download={() => this.downloadItem(item.url)}
+                         download={() => this.downloadItem(item.url, item.name)}
                          className="small"
                          margin={10}
                     />
