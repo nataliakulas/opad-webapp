@@ -2,7 +2,6 @@ import React from 'react';
 import {Container, Row, Col} from 'react-grid-system';
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
-import moment from 'moment';
 
 import {authCondition} from '../shared/helpers';
 import authorization from '../shared/authorization';
@@ -44,12 +43,14 @@ class FlukePage extends React.Component {
     const userId = auth.currentUser.uid;
 
     removeDbRefs(name, userId, this.props.removeItem(name));
+    this.resetItemPreview();
   };
 
   toggleFavItem(name, fav) {
     const userId = auth.currentUser.uid;
 
     updateDbRefs(name, !fav, userId, this.props.toggleFavItem(name, !fav));
+    this.setState({fav: !fav})
   };
 
   downloadItem(url, name) {
@@ -100,16 +101,29 @@ class FlukePage extends React.Component {
 
   }
 
-  drawItem = () => {
-    let items = this.props.items;
-    let flukeItem = items[Math.floor(Math.random() * items.length)];
-    // console.log(flukeItem)
+  resetItemPreview = () => {
     this.setState({
-      name: flukeItem.name,
-      url: flukeItem.url,
-      tag: flukeItem.tag,
-      fav: flukeItem.fav
+      name: '',
+      url: '',
+      tag: '',
+      fav: false,
     })
+  };
+
+  drawItem = () => {
+    let items = [];
+
+    if (this.props.items && this.props.items.length > 0) {
+      items = this.props.items;
+      let flukeItem = items[Math.floor(Math.random() * items.length)];
+
+      this.setState({
+        name: flukeItem.name,
+        url: flukeItem.url,
+        tag: flukeItem.tag,
+        fav: flukeItem.fav
+      })
+    }
   };
 
   render() {
