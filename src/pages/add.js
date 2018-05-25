@@ -48,12 +48,6 @@ class AddPage extends React.Component {
     this.props.getItems(null)
   }
 
-  cropItem = () => {
-    let data_url = this.refs.cropper.getCroppedCanvas().toDataURL();
-
-    this.setState({data_url: data_url})
-  };
-
   setDate = (date) => {
     let dates = [];
 
@@ -70,9 +64,19 @@ class AddPage extends React.Component {
     }
   };
 
+  setFav = () => {
+    this.setState({fav: true})
+  };
+
   setTag(e) {
-    this.setState({tag: '#' + e.currentTarget.value.toLowerCase()})
+    this.setState({tag: e.currentTarget.value.toLowerCase()})
   }
+
+  cropItem = () => {
+    let data_url = this.refs.cropper.getCroppedCanvas().toDataURL();
+
+    this.setState({data_url: data_url})
+  };
 
   setItem = (e) => {
     let item = e.target.files[0];
@@ -89,7 +93,8 @@ class AddPage extends React.Component {
     const userId = auth.currentUser.uid;
     const name = moment(this.state.date).format('YYYY-MM-DD');
     const data_url = this.state.data_url;
-    const tag = this.state.tag;
+    const tag = "#" + this.state.tag;
+    const fav = this.state.fav;
 
     this.setState({loading: true});
 
@@ -97,13 +102,16 @@ class AddPage extends React.Component {
       .putString(data_url, 'data_url')
       .then((snap) => {
         this.setState({loading: false});
-        createDbRef(snap.metadata.fullPath, name, tag, userId)
+        createDbRef(snap.metadata.fullPath, name, tag, fav, userId)
       })
       .then(() => this.setState({
         complete: true,
         item: '',
         url: '',
         data_url: '',
+        tag: '',
+        fav: false,
+        date: null,
         error: ''
       }))
       .catch(error => this.setState({error: error.message}));
@@ -137,11 +145,11 @@ class AddPage extends React.Component {
                             maxDate={moment()}
                             onChange={this.setDate}/>
                 <div className="row-space-between" style={{width: '30%'}}>
-                  <div className="ico unfav disabled"/>
+                  <div className={`ico ${this.state.fav ? "fav" : "unfav"}`} onClick={this.setFav}/>
                   <div className="ico info-block disabled"/>
                 </div>
               </div>
-              <input type="text" placeholder="Add tag" style={{maxWidth: '100%'}} onChange={e => this.setTag(e)}/>
+              <input type="text" placeholder="Add tag" style={{maxWidth: '100%'}} value={this.state.tag} onChange={e => this.setTag(e)}/>
               {this.state.loading ?
                 <div className="loader-wrapper">
                   <div className="loader"/>

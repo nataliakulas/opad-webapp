@@ -33,7 +33,7 @@ class Box extends React.Component {
           <p>{this.props.name}</p>
           <p>{this.props.tag}</p>
           <ul className="back-menu">
-            <li className="ico unfav disabled"/>
+            <li className={`ico ${this.props.fav ? "fav" : "unfav"}`}/>
             <li className="ico download" onClick={this.props.download}/>
             <li className="ico delete" onClick={this.props.remove}/>
           </ul>
