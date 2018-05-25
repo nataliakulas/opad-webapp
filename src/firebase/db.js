@@ -7,12 +7,12 @@ export const createUser = (id, name, email, items) =>
     items: items
   });
 
-export const createDbRef = (item_url, name, uid) => {
+export const createDbRef = (item_url, name, tag, uid) => {
   storage.ref(item_url)
     .getDownloadURL()
     .then(url => {
       if (name) {
-        db.ref(`${uid}/items/${name}`).set({url}, (error) => {
+        db.ref(`${uid}/items/${name}`).set({url, tag}, (error) => {
           if (error) {
             console.log("Picture adding failed")
           }

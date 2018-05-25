@@ -30,7 +30,7 @@ $grey-dark: #B7BCB9;
 
 body {
   font-family: 'Cabin', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 17px;
   color: $black-light;
   margin: 0;
@@ -218,6 +218,14 @@ p {
     background-image: url("../media/icons/info.svg");
   }
 
+  &.info-block {
+    background-image: url("../media/icons/info-block.svg");
+    background-size: 44px;
+    width: 44px;
+    height: 44px;
+    margin: 5px 0;
+  }
+
   &.fluke {
     background-image: url("../media/icons/dices.svg");
   }
@@ -240,10 +248,18 @@ p {
 
   &.unfav {
     background-image: url("../media/icons/unfav.svg");
+    background-size: 44px;
+    width: 44px;
+    height: 44px;
+    margin: 5px 0;
   }
 
   &.fav {
     background-image: url("../media/icons/fav.svg");
+    background-size: 44px;
+    width: 44px;
+    height: 44px;
+    margin: 5px 0;
   }
 
 }
@@ -259,6 +275,13 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
+}
+
+.row-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -439,11 +462,12 @@ p {
 }
 
 input {
-  width: 200px;
+  width: 100%;
+  max-width: 250px;
   box-sizing: border-box;
 
   font-family: 'Droid Sans', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 17px;
   color: $black-dark;
 
@@ -539,7 +563,7 @@ input[name=password_repeat] {
 
 .button {
   width: 100%;
-  max-width: 200px;
+  max-width: 250px;
 
   font: 400 14px 'Droid Sans', sans-serif;
   color: $white-light;
@@ -611,15 +635,9 @@ input[name=password_repeat] {
   width: 400px;
   height: 400px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   position: absolute;
   top: 0;
   left: 0;
-
-  text-transform: uppercase;
 
   background-color: $white-light;
   background-image: url("../media/icons/photo.svg");
@@ -633,5 +651,11 @@ input[name=password_repeat] {
 
   &.has-item {
     z-index: -1;
+  }
+
+  &.complete {
+    background-image: url("../media/icons/check-block.svg");
+    background-position: calc(50% + 90px) center;
+    border-color: transparent;
   }
 }

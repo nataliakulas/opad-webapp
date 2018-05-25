@@ -8,15 +8,13 @@ $grey-light: #CBD1CD;
 $grey-dark: #B7BCB9;
 
 .picker {
+  max-width: 200px;
   box-sizing: border-box;
 
   font-family: 'Droid Sans', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
 
   background-image: url("../media/icons/calendar.svg") !important;
-
-  margin: 20px auto;
-  padding-left: 15px;
 
   &:focus {
     border: 1px solid $black-dark;

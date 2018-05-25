@@ -23,7 +23,7 @@ export function itemsReducer(state = {items: []}, action) {
     }
     case REMOVE_ITEM: {
       const name = action.payload;
-      const items = []
+      const items = [];
 
       state.items.forEach(item => {
         if (name !== item.name) {

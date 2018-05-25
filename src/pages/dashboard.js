@@ -68,7 +68,7 @@ class DashboardPage extends React.Component {
                 {items.map((item, i) => {
                   i++;
                   return (
-                    <Box key={i} src={item.url} name={item.name}
+                    <Box key={i} src={item.url} name={item.name} tag={item.tag}
                          remove={() => this.removeItem(item.name)}
                          download={() => this.downloadItem(item.url)}
                          className="small"

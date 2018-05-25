@@ -33,8 +33,10 @@ class AddPage extends React.Component {
       item: '',
       url: '',
       data_url: '',
-      date: moment(),
-      error: ''
+      tag: '',
+      fav: false,
+      date: null,
+      error: '',
     }
   }
 
@@ -68,6 +70,10 @@ class AddPage extends React.Component {
     }
   };
 
+  setTag(e) {
+    this.setState({tag: '#' + e.currentTarget.value.toLowerCase()})
+  }
+
   setItem = (e) => {
     let item = e.target.files[0];
     let reader = new FileReader();
@@ -83,6 +89,7 @@ class AddPage extends React.Component {
     const userId = auth.currentUser.uid;
     const name = moment(this.state.date).format('YYYY-MM-DD');
     const data_url = this.state.data_url;
+    const tag = this.state.tag;
 
     this.setState({loading: true});
 
@@ -90,7 +97,7 @@ class AddPage extends React.Component {
       .putString(data_url, 'data_url')
       .then((snap) => {
         this.setState({loading: false});
-        createDbRef(snap.metadata.fullPath, name, userId)
+        createDbRef(snap.metadata.fullPath, name, tag, userId)
       })
       .then(() => this.setState({
         complete: true,
@@ -105,23 +112,46 @@ class AddPage extends React.Component {
   };
 
   render() {
+    let excluded = [];
+
+    if (this.props.items.length > 0) {
+      this.props.items.forEach(item => {
+        let excludeDate = moment(item.name);
+
+        excluded.push(excludeDate)
+      })
+    }
+
     return (
       <Container>
         <Row>
           <Col className="column-center" style={{height: '100vh'}}>
             <form className="column-center" onSubmit={this.onSubmit}>
-              <DatePicker className="picker"
-                          dateFormat="YYYY-MM-DD"
-                          selected={this.state.date}
-                          maxDate={moment()}
-                          onChange={this.setDate}/>
+              <div className="row-space-between" style={{width: '100%'}}>
+                <DatePicker className="picker"
+                            dateFormat="YYYY-MM-DD"
+                            placeholderText="Add date"
+                            selected={this.state.date}
+                            excludeDates={excluded}
+                            todayButton="Today"
+                            maxDate={moment()}
+                            onChange={this.setDate}/>
+                <div className="row-space-between" style={{width: '30%'}}>
+                  <div className="ico unfav disabled"/>
+                  <div className="ico info-block disabled"/>
+                </div>
+              </div>
+              <input type="text" placeholder="Add tag" style={{maxWidth: '100%'}} onChange={e => this.setTag(e)}/>
               {this.state.loading ?
                 <div className="loader-wrapper">
                   <div className="loader"/>
                 </div> :
                 (this.state.complete ?
-                    <div style={{width: 400, height: 400}}>
-                      Upload complete add another picture from another day or go to dashboard to view them</div> :
+                    <div className="upload-wrapper">
+                      <div className="column-center upload complete">
+                        <p>Upload complete!</p>
+                      </div>
+                    </div> :
                     <div className="upload-wrapper">
                       <Cropper ref="cropper"
                                src={this.state.url ? this.state.url : ""}
@@ -130,7 +160,9 @@ class AddPage extends React.Component {
                                guides={true}
                                crop={this.cropItem}/>
                       <input type="file" id="item" onChange={this.setItem}/>
-                      <label className={`upload${this.state.item ? " has-item" : ""}`} htmlFor="item">Add picture</label>
+                      <label className={`column-center upload${this.state.item ? " has-item" : ""}`} htmlFor="item">
+                        <p>Add picture</p>
+                      </label>
                     </div>
                 )
               }
