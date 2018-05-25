@@ -49,19 +49,45 @@ class DashboardPage extends React.Component {
       xhr.open('GET', url, true);
       xhr.responseType = 'blob';
 
-      xhr.onload = (event) => {
+      xhr.onload = () => {
         let blob = xhr.response;
+        let fileName = name;
+        let image = new Image();
 
-        let tag = document.createElement('a');
-        tag.href = url;
-        tag.download = name;
-        tag.target = "_blank"
-        document.body.appendChild(tag);
-        tag.click();
-        document.body.removeChild(tag);
+        image.crossOrigin = "anonymous";
+        image.src = url;
+
+        image.onload = function () {
+          let canvas = document.createElement('canvas');
+
+          canvas.width = this.naturalWidth;
+          canvas.height = this.naturalHeight;
+          canvas.getContext('2d').drawImage(this, 0, 0);
+
+          if (image.src.indexOf(".jpg") > -1) {
+            blob = canvas.toDataURL("image/jpeg");
+          } else if (image.src.indexOf(".png") > -1) {
+            blob = canvas.toDataURL("image/png");
+          } else if (image.src.indexOf(".gif") > -1) {
+            blob = canvas.toDataURL("image/gif");
+          } else {
+            blob = canvas.toDataURL("image/png");
+          }
+
+          let tag = document.createElement('a');
+
+          tag.href = blob;
+          tag.download = fileName;
+          tag.target = "_blank"
+          document.body.appendChild(tag);
+          tag.click();
+          document.body.removeChild(tag);
+        };
       };
       xhr.send();
     }
+
+
   }
 
   render() {
