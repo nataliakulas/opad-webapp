@@ -7,7 +7,7 @@ import moment from 'moment';
 import {authCondition} from '../shared/helpers';
 import authorization from '../shared/authorization';
 
-import {getFavItems, removeItem, toggleFavItem} from '../duck/actions';
+import {getItems, removeItem, toggleFavItem} from '../duck/actions';
 import {auth} from '../firebase/config';
 import {removeDbRefs, updateDbRefs} from '../firebase/db';
 
@@ -20,14 +20,24 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getFavItems: () => dispatch(getFavItems()),
+  getItems: () => dispatch(getItems()),
   removeItem: name => dispatch(removeItem(name)),
   toggleFavItem: (name, fav) => dispatch(toggleFavItem(name, fav))
 });
 
-class BestLovedPage extends React.Component {
+class FlukePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      url: '',
+      tag: '',
+      fav: false,
+    }
+  }
+
   componentDidMount() {
-    this.props.getFavItems();
+    this.props.getItems();
   }
 
   removeItem(name) {
@@ -40,7 +50,6 @@ class BestLovedPage extends React.Component {
     const userId = auth.currentUser.uid;
 
     updateDbRefs(name, !fav, userId, this.props.toggleFavItem(name, !fav));
-    this.props.getFavItems();
   };
 
   downloadItem(url, name) {
@@ -91,38 +100,33 @@ class BestLovedPage extends React.Component {
 
   }
 
+  drawItem = () => {
+    let items = this.props.items;
+    let flukeItem = items[Math.floor(Math.random() * items.length)];
+    // console.log(flukeItem)
+    this.setState({
+      name: flukeItem.name,
+      url: flukeItem.url,
+      tag: flukeItem.tag,
+      fav: flukeItem.fav
+    })
+  };
+
   render() {
-    let items = [];
-    if (this.props.items && this.props.items.length > 0) {
-      items = this.props.items;
-
-      items.sort((prev, next) => {
-        return moment(next.name) - moment(prev.name)
-      });
-    }
-
     return (
       <Container style={{minHeight: '100vh'}}>
         <Row>
           <Col>
-            {items.length === 0 ?
-              <div className="fullpage column-center">
-                <p>Best Loved Picture a Day</p></div> :
-              <div className="box-grid">
-                {items.map((item, i) => {
-                  i++;
-                  return (
-                    <Box key={i} src={item.url} name={item.name} tag={item.tag} fav={item.fav}
-                         toggle={() => this.toggleFavItem(item.name, item.fav)}
-                         remove={() => this.removeItem(item.name)}
-                         download={() => this.downloadItem(item.url, item.name)}
-                         className="small"
-                         margin={10}
-                    />
-                  )
-                })}
-              </div>
-            }
+            <div className="fullpage column-center">
+              <p style={{marginBottom: 20}}>Fluke Picture a Day</p>
+              <Box src={this.state.url} name={this.state.name} tag={this.state.tag} fav={this.state.fav}
+                   toggle={() => this.toggleFavItem(this.state.name, this.state.fav)}
+                   remove={() => this.removeItem(this.state.name)}
+                   download={() => this.downloadItem(this.state.url, this.state.name)}
+                   margin={0}
+              />
+              <button className="button" type="button" onClick={this.drawItem}>Try!</button>
+            </div>
           </Col>
         </Row> </Container>
     )
@@ -133,4 +137,4 @@ export default compose(
   authorization(authCondition),
   connect(mapStateToProps),
   connect(null, mapDispatchToProps)
-)(BestLovedPage)
+)(FlukePage)

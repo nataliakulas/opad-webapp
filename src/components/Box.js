@@ -23,7 +23,7 @@ class Box extends React.Component {
     return (
       <div className={`flip-wrapper${this.state.flip ? " flipped" : ""} ${this.props.className ? this.props.className : ""}`}
            style={{margin: this.props.margin}}>
-        <div className="front box">
+        <div className={`front box ${this.props.className ? this.props.className : ""}`}>
           <img src={this.props.src} alt={this.props.name}/>
           <div className="content column-center" onClick={this.flip}>
             <p>{this.props.name}</p>
