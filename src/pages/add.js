@@ -70,11 +70,10 @@ class AddPage extends React.Component {
     let item = e.target.files[0];
     let reader = new FileReader();
 
-    reader.onloadend = () => {
+    Promise.resolve(reader.onloadend = () => {
       this.setState({item: item, url: reader.result})
-    };
-
-    reader.readAsDataURL(item);
+    })
+      .then(() => reader.readAsDataURL(item))
   };
 
   onSubmit = (e) => {

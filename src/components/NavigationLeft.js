@@ -33,8 +33,6 @@ class NavigationLeft extends React.Component {
   goTo(path) {
     const {history} = this.props;
 
-    console.log('go to: ' + path);
-
     this.props.setActivePath("/" + path);
 
     switch (path) {

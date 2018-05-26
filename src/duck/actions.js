@@ -24,9 +24,8 @@ export function getItems() {
         if (snap) {
           snap.forEach(child => {
             let item = child.val();
-            item.name = child.key;
-
-            items.push(item)
+            Promise
+              .resolve(item.name = child.key).then(() => items.push(item))
           });
         }
       })
@@ -45,9 +44,11 @@ export function getFavItems() {
           let item = child.val();
           item.name = child.key;
 
-          if (item.fav) {
-            items.push(item)
-          }
+          Promise.resolve(item.name = child.key).then(() => {
+            if (item.fav) {
+              items.push(item)
+            }
+          })
         });
       })
       .then(() => dispatch({type: GET_FAV_ITEMS, payload: items}));

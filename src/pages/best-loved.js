@@ -39,8 +39,8 @@ class BestLovedPage extends React.Component {
   toggleFavItem(name, fav) {
     const userId = auth.currentUser.uid;
 
-    updateDbRefs(name, !fav, userId, this.props.toggleFavItem(name, !fav));
-    this.props.getFavItems();
+    Promise.resolve(updateDbRefs(name, !fav, userId, this.props.toggleFavItem(name, !fav)))
+      .then(() => this.props.getFavItems())
   };
 
   downloadItem(url, name) {
