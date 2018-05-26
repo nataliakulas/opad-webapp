@@ -21,9 +21,6 @@ export const createDbRef = (item_url, name, tag, fav, uid) => {
     })
 };
 
-export const getDbRefs = (uid) =>
-  db.ref(`${uid}/items`).once('value');
-
 export const removeDbRefs = (name, uid, callback) => {
   const storageRef = storage.ref().child(`${uid}/${name}`);
 

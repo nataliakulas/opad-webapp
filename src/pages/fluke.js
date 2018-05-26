@@ -10,8 +10,6 @@ import {getItems, removeItem, toggleFavItem} from '../duck/actions';
 import {auth} from '../firebase/config';
 import {removeDbRefs, updateDbRefs} from '../firebase/db';
 
-import Box from '../components/Box';
-
 
 const mapStateToProps = (state) => ({
   authUser: state.sessionState.authUser,
@@ -32,6 +30,7 @@ class FlukePage extends React.Component {
       url: '',
       tag: '',
       fav: false,
+      clicked: false
     }
   }
 
@@ -121,7 +120,8 @@ class FlukePage extends React.Component {
         name: flukeItem.name,
         url: flukeItem.url,
         tag: flukeItem.tag,
-        fav: flukeItem.fav
+        fav: flukeItem.fav,
+        clicked: true
       })
     }
   };
@@ -133,16 +133,35 @@ class FlukePage extends React.Component {
           <Col>
             <div className="fullpage column-center">
               <p style={{marginBottom: 20}}>Fluke Picture a Day</p>
-              <Box src={this.state.url} name={this.state.name} tag={this.state.tag} fav={this.state.fav}
-                   toggle={() => this.toggleFavItem(this.state.name, this.state.fav)}
-                   remove={() => this.removeItem(this.state.name)}
-                   download={() => this.downloadItem(this.state.url, this.state.name)}
-                   margin={0}
-              />
-              <button className="button" type="button" onClick={this.drawItem}>Try!</button>
+              <div className="preview-wrapper column-center">
+                <div className="preview-box">
+                  {this.state.url.length === 0 ?
+                    <div className="preview-placeholder"/> :
+                    <img src={this.state.url} alt={this.state.name}/>
+                  }
+                </div>
+                {this.state.name.length === 0 ?
+                  <div style={{height: 76}}/> :
+                  <div>
+                    <p>{this.state.name}</p>
+                    <p>{this.state.tag}</p>
+                  </div>
+                }
+                <ul>
+                  <li className={`ico ${this.state.fav ? "fav" : "unfav"}${this.props.items.length <= 1 ? " disabled" : ""}`} onClick={() => this.toggleFavItem(this.state.name, this.state.fav)}/>
+                  <li className={`ico download${this.props.items.length <= 1 ? " disabled" : ""}`} onClick={() => this.downloadItem(this.state.url, this.state.name)}/>
+                  <li className={`ico delete${this.props.items.length <= 1 ? " disabled" : ""}`} onClick={() => this.removeItem(this.state.name)}/>
+                </ul>
+              </div>
+              <button className="button" type="button" disabled={this.props.items.length <= 1} onClick={this.drawItem}>
+                {this.props.items.length <= 1 ? "Add more pictures" :
+                  (!this.state.clicked ? "Try your luck!" : "Try again!")
+                }
+              </button>
             </div>
           </Col>
-        </Row> </Container>
+        </Row>
+      </Container>
     )
   }
 }

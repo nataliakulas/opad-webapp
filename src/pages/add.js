@@ -49,19 +49,7 @@ class AddPage extends React.Component {
   }
 
   setDate = (date) => {
-    let dates = [];
-
-    if (this.props.items.length > 0) {
-      this.props.items.forEach(item => {
-        dates.push(item.name)
-      });
-
-      if (dates.includes(moment(date).format('YYYY-MM-DD'))) {
-        alert("One picture from this day already exist! Choose another date")
-      } else {
-        this.setState({date: date, complete: false})
-      }
-    }
+    this.setState({date: date, complete: false})
   };
 
   setFav = () => {
@@ -139,6 +127,7 @@ class AddPage extends React.Component {
                 <DatePicker className="picker"
                             dateFormat="YYYY-MM-DD"
                             placeholderText="Add date"
+                            popperPlacement="left-start"
                             selected={this.state.date}
                             excludeDates={excluded}
                             todayButton="Today"
@@ -174,7 +163,7 @@ class AddPage extends React.Component {
                     </div>
                 )
               }
-              <button disabled={this.state.complete} className="button" type="submit">Add</button>
+              <button disabled={this.state.complete || !this.state.date || !this.state.tag || !this.state.data_url} className="button" type="submit">Add</button>
             </form>
           </Col>
         </Row>

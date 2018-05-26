@@ -1,5 +1,4 @@
-import {auth} from '../firebase/config';
-import {getDbRefs} from '../firebase/db';
+import {auth, db} from '../firebase/config';
 
 export const AUTH_USER = 'AUTH_USER';
 export const GET_ITEMS = 'GET ITEMS';
@@ -14,19 +13,22 @@ export const setPath = (path) => ({type: SET_PATH, payload: path});
 export const removeItem = (name) => ({type: REMOVE_ITEM, payload: name});
 export const toggleFavItem = (name, fav) => ({type: TOGGLE_FAV_ITEM, payload: name, data: fav});
 
+
 export function getItems() {
   return dispatch => {
     const userId = auth.currentUser.uid;
     const items = [];
 
-    getDbRefs(userId)
-      .then(snap => {
-        snap.forEach(child => {
-          let item = child.val();
-          item.name = child.key;
+    db.ref(`${userId}/items`).once('value')
+      .then((snap) => {
+        if (snap) {
+          snap.forEach(child => {
+            let item = child.val();
+            item.name = child.key;
 
-          items.push(item)
-        });
+            items.push(item)
+          });
+        }
       })
       .then(() => dispatch({type: GET_ITEMS, payload: items}));
   }
@@ -37,7 +39,7 @@ export function getFavItems() {
     const userId = auth.currentUser.uid;
     const items = [];
 
-    getDbRefs(userId)
+    db.ref(`${userId}/items`).once('value')
       .then(snap => {
         snap.forEach(child => {
           let item = child.val();
