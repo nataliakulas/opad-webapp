@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class NavigationRight extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.setActivePath(this.props.history.location.pathname);
   }
 
@@ -29,6 +29,11 @@ class NavigationRight extends React.Component {
   componentWillUnmount() {
     this.props.setActivePath(null)
   }
+
+  logOut = () => {
+    Promise.resolve(this.props.setActivePath("/")).then(() => auth.signOut())
+  };
+
 
   goTo(path) {
     const {history} = this.props;
@@ -49,7 +54,7 @@ class NavigationRight extends React.Component {
       <div>
         {this.props.authUser ?
           <ul className="navigation right">
-            <li className="ico power" onClick={() => auth.signOut()}><span className="nav-label">Log out</span></li>
+            <li className="ico power" onClick={this.logOut}><span className="nav-label">Log out</span></li>
             <li className={`ico user${this.props.path === '/profile' ? " active" : ""}`} onClick={() => this.goTo('profile')}><span className="nav-label">Profile</span></li>
             <li className={`ico settings disabled`}><span className="nav-label">Settings</span></li>
             <li className={`ico photo disabled`}><span className="nav-label">Photo</span></li>

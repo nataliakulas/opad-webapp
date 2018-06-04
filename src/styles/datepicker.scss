@@ -8,13 +8,19 @@ $grey-light: #CBD1CD;
 $grey-dark: #B7BCB9;
 
 .picker {
-  max-width: 200px;
+  max-width: 220px;
   box-sizing: border-box;
 
   font-family: 'Droid Sans', sans-serif;
   font-size: 15px;
 
   background-image: url("../media/icons/calendar.svg") !important;
+  margin-top: 20px;
+
+  @media (min-width: 768px) {
+    max-width: 200px;
+    margin-top: 5px;
+  }
 
   &:focus {
     border: 1px solid $black-dark;
@@ -33,6 +39,12 @@ $grey-dark: #B7BCB9;
 .react-datepicker-popper[data-placement^="left"] {
   margin-right: 5px;
   margin-top: 5px;
+}
+
+.react-datepicker-popper[data-placement^="right"] {
+  top: 0 !important;
+  left: -247px !important;
+  margin-left: 0;
 }
 
 .react-datepicker__header {
@@ -107,8 +119,12 @@ $grey-dark: #B7BCB9;
 }
 
 .react-datepicker__month {
-  margin: 10px;
+  margin: 14px;
   text-align: center;
+
+  @media (min-width: 768px) {
+    margin: 10px;
+  }
 }
 
 .react-datepicker__day-names,
@@ -184,5 +200,9 @@ $grey-dark: #B7BCB9;
   border-top: 1px solid $black-light;
   text-transform: uppercase;
   font-weight: normal;
-  padding: 10px 0;
+  padding: 26px 0;
+
+  @media (min-width: 768px) {
+    padding: 10px 0;
+  }
 }

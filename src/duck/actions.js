@@ -15,42 +15,44 @@ export const toggleFavItem = (name, fav) => ({type: TOGGLE_FAV_ITEM, payload: na
 
 
 export function getItems() {
-  return dispatch => {
-    const userId = auth.currentUser.uid;
-    const items = [];
+  if (auth.currentUser.uid) {
+    return dispatch => {
+      const items = [];
 
-    db.ref(`${userId}/items`).once('value')
-      .then((snap) => {
-        if (snap) {
-          snap.forEach(child => {
-            let item = child.val();
-            Promise
-              .resolve(item.name = child.key).then(() => items.push(item))
-          });
-        }
-      })
-      .then(() => dispatch({type: GET_ITEMS, payload: items}));
+      db.ref(`${auth.currentUser.uid}/items`).once('value')
+        .then((snap) => {
+          if (snap) {
+            snap.forEach(child => {
+              let item = child.val();
+              Promise
+                .resolve(item.name = child.key).then(() => items.push(item))
+            });
+          }
+        })
+        .then(() => dispatch({type: GET_ITEMS, payload: items}));
+    }
   }
 }
 
 export function getFavItems() {
-  return dispatch => {
-    const userId = auth.currentUser.uid;
-    const items = [];
+  if (auth.currentUser.uid) {
+    return dispatch => {
+      const items = [];
 
-    db.ref(`${userId}/items`).once('value')
-      .then(snap => {
-        snap.forEach(child => {
-          let item = child.val();
-          item.name = child.key;
+      db.ref(`${auth.currentUser.uid}/items`).once('value')
+        .then(snap => {
+          snap.forEach(child => {
+            let item = child.val();
+            item.name = child.key;
 
-          Promise.resolve(item.name = child.key).then(() => {
-            if (item.fav) {
-              items.push(item)
-            }
-          })
-        });
-      })
-      .then(() => dispatch({type: GET_FAV_ITEMS, payload: items}));
+            Promise.resolve(item.name = child.key).then(() => {
+              if (item.fav) {
+                items.push(item)
+              }
+            })
+          });
+        })
+        .then(() => dispatch({type: GET_FAV_ITEMS, payload: items}));
+    }
   }
 }

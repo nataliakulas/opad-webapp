@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class NavigationLeft extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.setActivePath(this.props.history.location.pathname);
   }
 

@@ -38,10 +38,6 @@ body {
   overflow-X: hidden;
 }
 
-.heading {
-  font-family: 'Droid Sans', sans-serif;
-}
-
 p {
   font-family: "Droid Sans", sans-serif;
   margin: 0 auto;
@@ -57,6 +53,45 @@ p {
   background-color: $black-dark;
 }
 
+.visible-xs {
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.hidden-xs {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.column-space-around {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.row-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .background {
   width: 100vw;
   min-height: 100vh;
@@ -65,15 +100,15 @@ p {
 }
 
 .navigation {
-  width: 90px;
+  width: 100%;
+  height: 80px;
 
   position: fixed;
-  top: 0;
-  bottom: 0;
+
   z-index: 1000;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
 
   list-style-type: none;
@@ -84,32 +119,75 @@ p {
   background-color: transparent;
   box-sizing: border-box;
 
+  @media (min-width: 768px) {
+    width: 90px;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    flex-direction: column;
+    transform: none;
+  }
+
   &.left {
+    top: 0;
     left: 0;
-    border-right: 1px solid $black-light;
+    right: 0;
+    border-bottom: 1px solid $black-light;
+
+    @media (min-width: 768px) {
+      right: unset;
+      bottom: 0;
+      border-bottom: none;
+      border-right: 1px solid $black-light;
+    }
 
     li {
       &:hover .nav-label {
-        right: -180px
+        @media (min-width: 768px) {
+          right: -180px;
+        }
       }
 
       .nav-label {
-        right: 0;
+        top: 80px;
+        left: 0;
+
+        @media (min-width: 768px) {
+          top: 0;
+          left: unset;
+          right: 0;
+        }
       }
     }
   }
 
   &.right {
+    bottom: 0;
+    left: 0;
     right: 0;
-    border-left: 1px solid $black-light;
+    border-top: 1px solid $black-light;
+
+    @media (min-width: 768px) {
+      top: 0;
+      left: unset;
+      border-top: none;
+      border-left: 1px solid $black-light;
+    }
 
     li {
       &:hover .nav-label {
-        left: -180px
+        @media (min-width: 768px) {
+          left: -180px
+        }
       }
 
       .nav-label {
+        top: -50px;
         left: 0;
+
+        @media (min-width: 768px) {
+          top: 0;
+        }
       }
     }
   }
@@ -118,12 +196,23 @@ p {
     width: 50px;
     height: 50px;
 
-    position: relative;
-
-    padding: 20px;
+    padding: 15px;
 
     transition: background-color 0.3s ease-in;
     cursor: pointer;
+
+    @media (min-width: 768px) {
+      position: relative;
+      padding: 20px;
+
+      &:first-of-type {
+        margin-top: 90px;
+      }
+
+      &:last-of-type {
+        margin-bottom: 90px;
+      }
+    }
 
     &.active {
       background-color: $black-dark;
@@ -148,17 +237,9 @@ p {
       }
     }
 
-    &:first-of-type {
-      margin-top: 90px;
-    }
-
-    &:last-of-type {
-      margin-bottom: 90px;
-    }
-
     .nav-label {
-      width: 180px;
-      height: 90px;
+      width: 100vw;
+      height: 50px;
 
       position: absolute;
       top: 0;
@@ -172,14 +253,23 @@ p {
       color: $white-light;
       text-transform: uppercase;
       background: $black-light;
+
+      @media (min-width: 768px) {
+        width: 180px;
+        height: 90px;
+      }
     }
   }
 }
 
 .ico {
-  background-size: 50px;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 40px;
+
+  @media (min-width: 768px) {
+    background-size: 50px;
+  }
 
   &.disabled {
     opacity: 0.75;
@@ -220,10 +310,14 @@ p {
 
   &.info-block {
     background-image: url("../media/icons/info-block.svg");
-    background-size: 44px;
+    background-size: 40px;
     width: 44px;
     height: 44px;
     margin: 5px 0;
+
+    @media (min-width: 768px) {
+      background-size: 44px;
+    }
   }
 
   &.fluke {
@@ -248,46 +342,50 @@ p {
 
   &.unfav {
     background-image: url("../media/icons/unfav.svg");
-    background-size: 44px;
+    background-size: 40px;
     width: 44px;
     height: 44px;
     margin: 5px 0;
+
+    @media (min-width: 768px) {
+      background-size: 44px;
+    }
   }
 
   &.fav {
     background-image: url("../media/icons/fav.svg");
-    background-size: 44px;
+    background-size: 40px;
     width: 44px;
     height: 44px;
     margin: 5px 0;
+
+    @media (min-width: 768px) {
+      background-size: 44px;
+    }
   }
 
-}
+  &.toggle {
+    background-image: url("../media/icons/squares.svg");
+    background-size: 40px;
+    width: 44px;
+    height: 44px;
+    margin: 15px auto 0 auto;
 
-.column-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.column-space-around {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.row-space-between {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
 }
 
 .fullpage {
-  height: 100vh;
+  height: calc(100vh - 220px);
   perspective: 1000px;
+  padding: 110px 0;
+
+  @media (min-width: 768px) {
+    height: 100vh;
+    padding: 0;
+  }
 
   p {
     font-family: 'Cabin', sans-serif;
@@ -369,21 +467,27 @@ p {
 }
 
 .flip-wrapper {
-  width: 400px;
-  height: 400px;
+  width: 100%;
+  max-width: 290px;
+  height: 290px;
 
   box-sizing: border-box;
+  position: relative;
 
   transition: 0.6s;
   transform-style: preserve-3d;
 
-  position: relative;
+  @media (min-width: 768px) {
+    width: 400px;
+    max-width: 400px;
+    height: 400px;
+  }
 
   .back-menu {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 0;
 
@@ -403,6 +507,10 @@ p {
   &.small {
     width: 200px;
     height: 200px;
+  }
+
+  &.register {
+    height: 400px;
   }
 
   .front, .back {
@@ -462,6 +570,34 @@ p {
   }
 }
 
+.button {
+  min-height: 42px;
+  width: 100%;
+  max-width: 250px;
+
+  font: 400 15px 'Droid Sans', sans-serif;
+  line-height: 20px;
+  color: $white-light;
+  text-transform: uppercase;
+
+  background-color: $black-light;
+  border: 1px solid $black-light;
+  cursor: pointer;
+
+  padding: 10px;
+  margin: 20px auto;
+
+  &:hover {
+    background-color: $black-dark;
+  }
+
+  &:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+  }
+}
+
+//region Input
 input {
   width: 100%;
   max-width: 250px;
@@ -507,12 +643,22 @@ input[name=password_repeat] {
   background-image: url("../media/icons/check.svg");
 }
 
+//endregion
+
+//region Box
 .box-grid {
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
   flex-flow: wrap;
-  padding: 100px 0;
+  padding: 110px 0;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 100px 0;
+  }
 }
 
 .box {
@@ -571,31 +717,9 @@ input[name=password_repeat] {
   }
 }
 
-.button {
-  width: 100%;
-  max-width: 250px;
+//endregion
 
-  font: 400 14px 'Droid Sans', sans-serif;
-  color: $white-light;
-  text-transform: uppercase;
-
-  background-color: $black-light;
-  border: 1px solid $black-light;
-  cursor: pointer;
-
-  padding: 15px;
-  margin: 20px auto;
-
-  &:hover {
-    background-color: $black-dark;
-  }
-
-  &:disabled {
-    opacity: 0.75;
-    cursor: not-allowed;
-  }
-}
-
+//region Cropper
 .cropper-view-box {
   outline: $orange-light solid 1px;
 }
@@ -605,26 +729,66 @@ input[name=password_repeat] {
   background-color: $orange-light;
 }
 
+.cropper-point {
+  width: 5px !important;
+  height: 5px !important;
+}
+
+//endregion
+
+//region Loader
+$loader: 200px;
+$uploader-xs: 275px;
+$uploader: 400px;
+
 .loader-wrapper {
-  width: 400px;
-  height: 400px;
+  width: $uploader-xs;
+  height: $uploader-xs;
   background-color: transparent;
+
+  @media (min-width: 768px) {
+    width: $loader*2;
+    height: $loader*2;
+  }
 }
 
 .loader {
-  width: 200px;
-  height: 200px;
+  width: $uploader-xs/2;
+  height: $uploader-xs/2;
+  margin: $uploader-xs/4 auto;
+
   background-color: $black-light;
 
-  margin: 100px auto;
   animation: rotate-animation 1.5s infinite ease-in-out;
+
+  @media (min-width: 768px) {
+    width: $loader;
+    height: $loader;
+    margin: $loader/2 auto;
+  }
 }
 
-.upload-wrapper {
-  width: 400px;
-  height: 400px;
+//endregion
 
+//region Upload
+.upload-wrapper {
+  width: $uploader-xs;
+  height: $uploader-xs;
   position: relative;
+  opacity: 1;
+
+  @media (min-width: 768px) {
+    width: $uploader;
+    height: $uploader;
+  }
+
+  &.toggled {
+    opacity: 0;
+
+    @media (min-width: 768px) {
+      opacity: 1;
+    }
+  }
 
   input[type='file'] {
     width: 0.1px;
@@ -641,9 +805,111 @@ input[name=password_repeat] {
   }
 }
 
+.upload-button {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.upload-toggle-wrapper {
+  width: $uploader-xs;
+  height: $uploader-xs;
+
+  top: 117px;
+  left: 0;
+  right: 0;
+  opacity: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  &.toggled {
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    width: $uploader;
+    height: unset;
+    position: static;
+    z-index: 0;
+    opacity: 1;
+  }
+
+  &.flip-box {
+    @media (min-width: 768px) {
+      transform: none;
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+
+  > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+
+    > div {
+      width: 80%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+
+      .unfav,
+      .fav {
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .tag {
+    max-width: 220px;
+
+    @media (min-width: 768px) {
+      max-width: 100%;
+      margin-top: 0;
+    }
+  }
+
+  .button {
+    max-width: 220px;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+.upload-crop {
+  width: $uploader-xs;
+  height: $uploader-xs;
+
+  @media (min-width: 768px) {
+    width: $uploader;
+    height: $uploader;
+  }
+}
+
 .upload {
-  width: 400px;
-  height: 400px;
+  width: $uploader-xs;
+  height: $uploader-xs;
+
+  @media (min-width: 768px) {
+    width: $uploader;
+    height: $uploader;
+  }
 
   position: absolute;
   top: 0;
@@ -670,6 +936,9 @@ input[name=password_repeat] {
   }
 }
 
+//endregion
+
+//region Preview
 .preview-wrapper {
   p {
     margin: 10px 0
@@ -686,22 +955,34 @@ input[name=password_repeat] {
       width: 44px;
       height: 44px;
       background-size: 44px;
-      margin: 0;
+      margin: 0 !important;
     }
   }
 }
 
 .preview-box {
   .preview-placeholder {
-    width: 400px;
-    height: 400px;
+    width: 22vh;
+    height: 22vh;
     background-color: $white-light;
     border: 1px dotted $black-light;
     box-sizing: border-box;
+
+    @media (min-width: 768px) {
+      width: 400px;
+      height: 400px;
+    }
   }
 
   img {
-    width: 400px;;
-    height: 400px;
+    width: 22vh;
+    height: 22vh;
+
+    @media (min-width: 768px) {
+      width: 400px;
+      height: 400px;
+    }
   }
 }
+
+//endregion

@@ -37,6 +37,7 @@ class AddPage extends React.Component {
       fav: false,
       date: null,
       error: '',
+      toggle: false
     }
   }
 
@@ -48,12 +49,17 @@ class AddPage extends React.Component {
     this.props.getItems(null)
   }
 
+  toggleView = () => {
+    this.setState({toggle: !this.state.toggle})
+  };
+
+
   setDate = (date) => {
     this.setState({date: date, complete: false})
   };
 
   setFav = () => {
-    this.setState({fav: true})
+    this.setState({fav: !this.state.fav})
   };
 
   setTag(e) {
@@ -61,19 +67,22 @@ class AddPage extends React.Component {
   }
 
   cropItem = () => {
-    let data_url = this.refs.cropper.getCroppedCanvas().toDataURL();
+    if (this.refs.cropper) {
+      let data_url = this.refs.cropper.getCroppedCanvas().toDataURL();
 
-    this.setState({data_url: data_url})
+      this.setState({data_url: data_url})
+    }
   };
 
   setItem = (e) => {
     let item = e.target.files[0];
     let reader = new FileReader();
 
-    Promise.resolve(reader.onloadend = () => {
+    reader.onloadend = () => {
       this.setState({item: item, url: reader.result})
-    })
-      .then(() => reader.readAsDataURL(item))
+    };
+
+    reader.readAsDataURL(item);
   };
 
   onSubmit = (e) => {
@@ -121,26 +130,36 @@ class AddPage extends React.Component {
       <Container>
         <Row>
           <Col className="column-center" style={{height: '100vh'}}>
-            <form className="column-center" onSubmit={this.onSubmit}>
-              <div className="row-space-between" style={{width: '100%'}}>
-                <DatePicker className="picker"
-                            dateFormat="YYYY-MM-DD"
-                            placeholderText="Add date"
-                            popperPlacement="left-start"
-                            selected={this.state.date}
-                            excludeDates={excluded}
-                            todayButton="Today"
-                            maxDate={moment()}
-                            onChange={this.setDate}/>
-                <div className="row-space-between" style={{width: '30%'}}>
-                  <div className={`ico ${this.state.fav ? "fav" : "unfav"}`} onClick={this.setFav}/>
-                  <div className="ico info-block disabled"/>
-                </div>
-              </div>
-              <input type="text" placeholder="Add tag" style={{maxWidth: '100%'}} value={this.state.tag} onChange={e => this.setTag(e)}/>
+            <form className="fullpage column-center" onSubmit={this.onSubmit}>
               {this.state.loading ?
-                <div className="loader-wrapper">
-                  <div className="loader"/>
+                <div className="loader-wrapper visible-xs">
+                  <div className="loader visible-xs"/>
+                </div> :
+                <div className={`upload-toggle-wrapper flip-box${this.state.toggle ? " toggled flipped" : ""}`}>
+                  <div>
+                    <DatePicker className="picker"
+                                dateFormat="YYYY-MM-DD"
+                                placeholderText="Add date"
+                                popperPlacement="left-start"
+                                selected={this.state.date}
+                                excludeDates={excluded}
+                                todayButton="Today"
+                                maxDate={moment()}
+                                onChange={this.setDate}/>
+                    <div>
+                      <div className={`ico ${this.state.fav ? "fav" : "unfav"}`} onClick={this.setFav}/>
+                      <div className="ico info-block disabled"/>
+                    </div>
+                  </div>
+                  <input type="text" className="tag" placeholder="Add tag" value={this.state.tag} onChange={e => this.setTag(e)}/>
+                  <button disabled={this.state.complete || !this.state.date || !this.state.tag || !this.state.data_url}
+                          className="button" type="submit">Add
+                  </button>
+                </div>
+              }
+              {this.state.loading ?
+                <div className="loader-wrapper hidden-xs">
+                  <div className="loader hidden-xs"/>
                 </div> :
                 (this.state.complete ?
                     <div className="upload-wrapper">
@@ -148,21 +167,24 @@ class AddPage extends React.Component {
                         <p>Upload complete!</p>
                       </div>
                     </div> :
-                    <div className="upload-wrapper">
+                    <div className={`upload-wrapper${this.state.toggle ? " toggled" : ""}`}>
                       <Cropper ref="cropper"
-                               src={this.state.url ? this.state.url : ""}
-                               style={{height: 400, width: 400}}
+                               src={this.state.url ? this.state.url : ""} to
+                               className="upload-crop"
                                aspectRatio={1}
                                guides={true}
                                crop={this.cropItem}/>
-                      <input type="file" id="item" onChange={this.setItem}/>
+                      <input type="file" id="item" hidden onChange={this.setItem}/>
                       <label className={`column-center upload${this.state.item ? " has-item" : ""}`} htmlFor="item">
                         <p>Add picture</p>
                       </label>
                     </div>
                 )
               }
-              <button disabled={this.state.complete || !this.state.date || !this.state.tag || !this.state.data_url} className="button" type="submit">Add</button>
+              <button disabled={this.state.complete || !this.state.date || !this.state.tag || !this.state.data_url}
+                      className="button upload-button" type="submit">Add
+              </button>
+              <div className={`ico toggle`} onClick={this.toggleView}/>
             </form>
           </Col>
         </Row>

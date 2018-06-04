@@ -15,7 +15,7 @@ export default class FlipBox extends React.Component {
 
   render() {
     return (
-      <div className={`flip-box flip-wrapper column-center${this.state.flip ? " flipped" : ""}`}>
+      <div className={`flip-box flip-wrapper column-center${this.state.flip ? " flipped" : ""}${this.props.className ? (" " + this.props.className) : ""}`}>
         {this.props.children}
       </div>
     )

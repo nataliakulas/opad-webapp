@@ -42,7 +42,7 @@ class ProfilePage extends React.Component {
       <Container>
         <Row>
           <Col className="column-center" style={{height: '100vh'}}>
-            <FlipBox flip={true}>
+            <FlipBox flip={true} className="relative">
               <form className="column-center" style={{}} onSubmit={this.onSubmit}>
                 <input value={this.state.password}
                        onChange={(e) => this.setState(propByKey('password', e.target.value))}

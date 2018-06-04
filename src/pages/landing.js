@@ -30,9 +30,10 @@ class LogIn extends React.Component {
   onSubmit = (e) => {
     logIn(this.state.email, this.state.password)
       .then(() => {
-        this.setState(() => ({email: '', password: ''}))
+        this.setState(() => ({email: '', password: ''}));
         this.props.history.push(routes.DASHBOARD);
-      });
+      })
+    ;
 
     e.preventDefault();
   };
@@ -191,7 +192,7 @@ class LandingPage extends React.Component {
                   <li onClick={() => this.setState({flip_reset: false})}>Back</li>
                 </ul>
               </FlipBox>
-              <FlipBox flip={this.state.flip_register}>
+              <FlipBox className="register" flip={this.state.flip_register}>
                 <Register history={history}/>
                 <ul>
                   <li onClick={() => this.setState({flip_register: false})}>Back</li>
